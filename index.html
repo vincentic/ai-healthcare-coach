@@ -341,13 +341,14 @@
           <div class="notes-toolbar">
             <div>
               <h2>模块索引导航</h2>
-              <p>按 Java、SEO、产品、设计、业务等模块切换左侧标签，再在中间列表选择 Markdown 预览或 HTML 页面。</p>
+              <p>按医药信息工程、Java、SEO、产品、设计、业务等模块切换左侧标签，再在中间列表选择 Markdown 预览或 HTML 页面。</p>
             </div>
-            <span class="doc-count">48 篇 Markdown · 7 个 HTML 应用</span>
+            <span class="doc-count">54 篇 Markdown · 7 个 HTML 应用</span>
           </div>
           <div class="notes-browser">
             <div class="notes-tabs" role="tablist" aria-label="模块索引导航">
-              <button class="notes-tab active" type="button" data-notes-filter="engineering" role="tab" aria-selected="true">软件工程<span>作品 / GitHub / Vercel</span></button>
+              <button class="notes-tab active" type="button" data-notes-filter="medical-engineering" role="tab" aria-selected="true">医药信息工程<span>医药信息 / 软件工程</span></button>
+              <button class="notes-tab" type="button" data-notes-filter="engineering" role="tab" aria-selected="false">软件工程<span>作品 / GitHub / Vercel</span></button>
               <button class="notes-tab" type="button" data-notes-filter="all" role="tab" aria-selected="false">全部模块<span>完整文档索引</span></button>
               <button class="notes-tab" type="button" data-notes-filter="java" role="tab" aria-selected="false">Java<span>基础 / 数据库 / 框架</span></button>
               <button class="notes-tab" type="button" data-notes-filter="seo" role="tab" aria-selected="false">SEO<span>建站 / 日历 / 运营</span></button>
@@ -536,6 +537,30 @@
               <strong>产研应用 · 亦庄产业 AI 调研工作台</strong>
               <span>围绕亦庄、汽车、机器人、语言杠杆和产业 AI 机会建立调研与决策模块。</span>
             </a>
+            <a class="note-link" href="medical-info-engineering/week-01.md" data-doc="medical-info-engineering/week-01.md">
+              <strong>医药信息工程 · 第 1 周</strong>
+              <span>建立医药信息产品认知、GitHub 仓库、Vercel 部署和项目入口。</span>
+            </a>
+            <a class="note-link" href="medical-info-engineering/week-02.md" data-doc="medical-info-engineering/week-02.md">
+              <strong>医药信息工程 · 第 2 周</strong>
+              <span>把医药信息样本整理成结构化数据，并完成列表与详情展示。</span>
+            </a>
+            <a class="note-link" href="medical-info-engineering/week-03.md" data-doc="medical-info-engineering/week-03.md">
+              <strong>医药信息工程 · 第 3 周</strong>
+              <span>加入搜索、筛选、空状态和错误状态，让页面变成可用工具。</span>
+            </a>
+            <a class="note-link" href="medical-info-engineering/week-04.md" data-doc="medical-info-engineering/week-04.md">
+              <strong>医药信息工程 · 第 4 周</strong>
+              <span>补齐来源、更新时间、风险等级和医药信息使用边界。</span>
+            </a>
+            <a class="note-link" href="medical-info-engineering/week-05.md" data-doc="medical-info-engineering/week-05.md">
+              <strong>医药信息工程 · 第 5 周</strong>
+              <span>建立反馈入口、版本日志和需求清单，完成一次小迭代。</span>
+            </a>
+            <a class="note-link" href="medical-info-engineering/week-06.md" data-doc="medical-info-engineering/week-06.md">
+              <strong>医药信息工程 · 第 6 周</strong>
+              <span>整理作品集版本，沉淀 GitHub、Vercel、复盘和下一阶段路线。</span>
+            </a>
             <a class="note-link" href="software-engineering-practice/roadmap.md" data-doc="software-engineering-practice/roadmap.md">
               <strong>软件工程实践 · Roadmap</strong>
               <span>以输出作品为目标，每一步通过 GitHub 记录、Vercel 部署和复盘形成工程闭环。</span>
@@ -629,6 +654,9 @@
         if (path.startsWith("business-growth/")) {
           return "business";
         }
+        if (path.startsWith("medical-info-engineering/")) {
+          return "medical-engineering";
+        }
         if (path.startsWith("software-engineering-practice/")) {
           return "engineering";
         }
@@ -667,7 +695,7 @@
           filterNotes(tab.dataset.notesFilter);
         });
       });
-      filterNotes("engineering");
+      filterNotes("medical-engineering");
 
       const escapeHtml = (value) => value
         .replaceAll("&", "&amp;")
