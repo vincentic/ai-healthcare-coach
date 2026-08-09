@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Health Informatics 长期弹性指南</title>
+    <style>
+      :root {
+        color-scheme: light;
+        font-family: Inter, "Segoe UI", Arial, sans-serif;
+        --bg: #f5f8f7;
+        --surface: #ffffff;
+        --soft: #edf5f2;
+        --text: #172033;
+        --muted: #5f6f7c;
+        --line: #d6e2de;
+        --green: #20745e;
+        --blue: #176f93;
+        --gold: #8b6824;
+        --red: #a34945;
+        --ink: #24384f;
+        --shadow: rgba(30, 52, 60, 0.09);
+      }
+
+      * { box-sizing: border-box; }
+      body { margin: 0; background: var(--bg); color: var(--text); }
+      a { color: inherit; text-decoration: none; }
+      h1, h2, h3, p { margin-top: 0; }
+      p, li, td { color: var(--muted); line-height: 1.75; }
+      .layout { display: grid; grid-template-columns: 280px minmax(0, 1fr); min-height: 100vh; }
+      .rail {
+        position: sticky;
+        top: 0;
+        height: 100vh;
+        overflow: auto;
+        border-right: 1px solid var(--line);
+        background: #fbfdfc;
+        padding: 20px;
+      }
+      .brand { display: grid; gap: 10px; margin-bottom: 22px; }
+      .brand a { color: var(--blue); font-size: 0.9rem; font-weight: 900; }
+      .brand h1 { margin: 0; font-size: 1.2rem; line-height: 1.3; }
+      .brand p { margin: 0; font-size: 0.92rem; }
+      .nav { display: grid; gap: 8px; }
+      .nav a {
+        border: 1px solid transparent;
+        border-radius: 8px;
+        color: var(--ink);
+        font-size: 0.92rem;
+        font-weight: 800;
+        padding: 10px 11px;
+      }
+      .nav a:hover, .nav a:focus-visible { border-color: var(--line); background: var(--soft); outline: none; }
+      main { min-width: 0; padding: 24px; }
+      .workspace { max-width: 1180px; margin: 0 auto; display: grid; gap: 20px; }
+      .hero, .panel, .chapter, .metric, .year-card {
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--surface);
+        box-shadow: 0 12px 28px var(--shadow);
+      }
+      .hero { display: grid; gap: 18px; padding: 24px; }
+      .eyebrow {
+        color: var(--green);
+        font-size: 0.82rem;
+        font-weight: 900;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+      .hero h2 { margin: 0; font-size: clamp(2rem, 4vw, 3.45rem); line-height: 1.14; }
+      .lead { max-width: 900px; margin: 0; color: var(--muted); font-size: 1.05rem; line-height: 1.85; }
+      .axis {
+        border-left: 4px solid var(--green);
+        background: #eff8f4;
+        color: #264b3d;
+        font-size: 1.02rem;
+        font-weight: 900;
+        line-height: 1.7;
+        padding: 13px 15px;
+      }
+      .section { display: grid; gap: 12px; }
+      .section-head { display: flex; align-items: end; justify-content: space-between; gap: 16px; }
+      .section-head h2 { margin: 0; font-size: 1.28rem; }
+      .badge {
+        flex: 0 0 auto;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        background: #fff;
+        color: var(--ink);
+        font-size: 0.82rem;
+        font-weight: 900;
+        padding: 7px 10px;
+      }
+      .panel, .chapter, .metric, .year-card { padding: 18px; }
+      .grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+      .grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+      .table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 8px; background: #fff; }
+      table { width: 100%; min-width: 720px; border-collapse: collapse; }
+      th, td { border-bottom: 1px solid var(--line); padding: 12px 13px; text-align: left; vertical-align: top; }
+      th { color: var(--ink); background: var(--soft); font-size: 0.88rem; font-weight: 900; }
+      tr:last-child td { border-bottom: 0; }
+      .quote {
+        border-left: 4px solid var(--gold);
+        background: #fff8e8;
+        color: #59451f;
+        font-weight: 900;
+        line-height: 1.7;
+        padding: 12px 14px;
+      }
+      .warning {
+        border-left: 4px solid var(--red);
+        background: #fff1f0;
+        color: #6d302d;
+        font-weight: 900;
+        line-height: 1.7;
+        padding: 12px 14px;
+      }
+      .checklist { display: grid; gap: 8px; margin: 0; padding: 0; list-style: none; }
+      .checklist li { border-left: 3px solid var(--green); background: #f6fbf8; padding: 8px 10px; }
+      .metric strong, .year-card strong { display: block; margin-bottom: 6px; color: var(--ink); }
+      .timeline { display: grid; gap: 12px; }
+      .year-card h3 { margin: 0 0 8px; color: var(--ink); font-size: 1.05rem; }
+      @media (max-width: 920px) {
+        .layout { grid-template-columns: 1fr; }
+        .rail { position: static; height: auto; border-right: 0; border-bottom: 1px solid var(--line); }
+        .nav { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        .grid-2, .grid-3 { grid-template-columns: 1fr; }
+      }
+      @media (max-width: 620px) {
+        main, .rail { padding: 16px; }
+        .nav { grid-template-columns: 1fr; }
+        .hero, .panel, .chapter, .metric, .year-card { padding: 16px; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="layout">
+      <aside class="rail">
+        <div class="brand">
+          <a href="../index.html#notes">返回服务总览</a>
+          <h1>Health Informatics 长期弹性指南</h1>
+          <p>把路线设计成可改道系统，而不是人生终局剧本。</p>
+        </div>
+        <nav class="nav" aria-label="长期弹性指南导航">
+          <a href="#flex">6 个灵活点</a>
+          <a href="#risks">真正的大风险</a>
+          <a href="#low-profile">低配版路线</a>
+          <a href="#timeline-30">30-39 岁</a>
+          <a href="#timeline-40">40-49 岁</a>
+          <a href="#timeline-50">50-59 岁</a>
+          <a href="#timeline-60">60-70 岁</a>
+          <a href="#robust">鲁棒性测试</a>
+        </nav>
+      </aside>
+
+      <main>
+        <div class="workspace">
+          <section class="hero">
+            <span class="eyebrow">Lifetime Flexibility / Health Informatics</span>
+            <h2>真正有价值的不是线路，而是改道能力</h2>
+            <p class="lead">这套方案真正有价值的地方，不是“济南 → 南京/苏州 → 亦庄/上海”这条线路本身，而是它允许你在职业、家庭、父母、城市、健康五个维度上不断改道，而不用把一次选择变成人生终局。</p>
+            <div class="axis">硬底座不丢，领域逐步加深；城市阶段性使用；家庭变化时允许改道；40 岁后从速度转向经验；50 岁后即使下降一级仍然能活。</div>
+          </section>
+
+          <section class="section" id="flex">
+            <div class="section-head">
+              <h2>一、最重要的 6 个灵活点</h2>
+              <span class="badge">弹性设计</span>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>灵活点</th>
+                    <th>具体怎么用</th>
+                    <th>避免什么风险</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td>专业可退</td><td>Health 失败，可退回 Software/Data/AI。</td><td>转型清零</td></tr>
+                  <tr><td>领域可换</td><td>医院 → 药企 → 器械 → 公共卫生 → 普通 AI。</td><td>被单一赛道锁死</td></tr>
+                  <tr><td>城市可换</td><td>济南 Base，外地只在机会成立时迁移。</td><td>城市执念</td></tr>
+                  <tr><td>阶段可换</td><td>30-35 筑底，35-45 冲击，45+ 重新选。</td><td>30 岁替 70 岁做决定</td></tr>
+                  <tr><td>工作形式可换</td><td>全职 → 顾问 → 项目制 → 教学/研究。</td><td>中年只能拼工时</td></tr>
+                  <tr><td>身份可升级</td><td>Engineer → Domain Engineer → Architect → Advisor。</td><td>40 岁继续和年轻人卷编码</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="quote">Health Informatics 是专业加层，不是重新做人。只要 Software/Data/AI 不丢，你的下限始终存在。</div>
+          </section>
+
+          <section class="section" id="risks">
+            <div class="section-head">
+              <h2>二、这套方案真正的大风险</h2>
+              <span class="badge">提前标注</span>
+            </div>
+            <div class="grid-2">
+              <div class="metric"><strong>一直准备进入 Health，却从未真正进入</strong>每 12-18 个月至少增加一个真实 Health 资产，例如医院项目、药企项目、临床数据、论文合作、Health 产品或正式岗位。</div>
+              <div class="metric"><strong>济南舒服，但职业升级速度慢</strong>济南最大的敌人不是失败，而是满意度足够高，以至于没有动力升级到 Medical Knowledge、Pharma AI、Clinical AI、Architecture。</div>
+              <div class="metric"><strong>京沪/亦庄复制过去的高压模式</strong>再去之前必须有进入条件、收获目标、退出条件。没有这三条，不去。</div>
+              <div class="metric"><strong>南京/苏州被浪漫化</strong>先工作/短居验证，再成为第二故乡，而不是新的白月光。</div>
+              <div class="metric"><strong>婚姻改变优化函数</strong>结婚以后变量变成伴侣职业、双方父母、生育、孩子教育、房产。35 岁最优城市可能和 30 岁完全不同。</div>
+              <div class="metric"><strong>父母成为最强城市变量</strong>父母照护不一定是 60 岁以后才发生，40 岁前后就可能进入生活。</div>
+            </div>
+          </section>
+
+          <section class="section" id="low-profile">
+            <div class="section-head">
+              <h2>三、低配版核心原则</h2>
+              <span class="badge">不靠好运</span>
+            </div>
+            <div class="panel">
+              <p>这个版本不假设创业成功、百万年薪、头部大厂高管、著名专家或模板家庭。它只假设没有特别好运，但也没有遭遇毁灭性灾难。这样才能检验一条人生路线是否真的稳健。</p>
+              <div class="warning">低配测试：如果没有成为 AI 大牛、45 岁回济南、54 岁经历降薪再就业，但仍能保有家庭、技能、健康、父母陪伴和选择余地，这条路径就是鲁棒的。</div>
+            </div>
+          </section>
+
+          <section class="section" id="timeline-30">
+            <div class="section-head">
+              <h2>四、30-39 岁：从普通软件工程师到真实 Health 项目</h2>
+              <span class="badge">不断线</span>
+            </div>
+            <div class="timeline">
+              <div class="year-card"><h3>30 岁：普通软件工程师</h3><p>开始学 Health Informatics，做了一个没人用的医疗知识 RAG。没有裸辞，第一次完成软件 → 医疗知识的连接。</p></div>
+              <div class="year-card"><h3>31 岁：发现 Health 很无聊</h3><p>看到数据库、接口、表结构、医院需求、权限、数据清洗，意识到这才是行业。</p></div>
+              <div class="year-card"><h3>32 岁：读研或继续工程学习</h3><p>系统补 Python、SQL、Backend、Data Engineering，开始认识医疗数据方向的人。</p></div>
+              <div class="year-card"><h3>33 岁：第一个真实 Health 项目</h3><p>机会并不高级，可能只是医院科研数据平台里的一个功能模块，但简历第一次出现 Healthcare project。</p></div>
+              <div class="year-card"><h3>34-36 岁：稳定生活与职业换名</h3><p>婚恋、结婚、买能力范围内的房子。工作变成 Healthcare Software Engineer，每天仍然写代码、开会、改需求，但开始懂医生工作流、医疗数据和信息系统。</p></div>
+              <div class="year-card"><h3>37-39 岁：一次真实迁移与孩子出生</h3><p>苏州 MedTech/医药数字化机会真正涉及医疗数据平台、知识系统、研发信息化。迁移不轻松，孩子出生后职业规划暂停提速，只要求不断线。</p></div>
+            </div>
+          </section>
+
+          <section class="section" id="timeline-40">
+            <div class="section-head">
+              <h2>五、40-49 岁：从速度转向经验</h2>
+              <span class="badge">行业理解</span>
+            </div>
+            <div class="timeline">
+              <div class="year-card"><h3>40 岁：没有成为 AI 专家</h3><p>只是高级工程师/小组负责人，但市场开始把你看成懂 Health 的软件工程师。</p></div>
+              <div class="year-card"><h3>41-42 岁：行业下行与城市再选择</h3><p>AI 项目预算被砍，基础医疗系统仍要维护。亦庄出现好机会，但孩子上小学、伴侣不愿搬家，于是尝试远程合作和项目交流。</p></div>
+              <div class="year-card"><h3>43-44 岁：父亲住院与回济南</h3><p>回山东陪护后重新讨论是否回济南。收入下降约 20%，但压力下降，孩子和祖父母关系增加，父母有事能更快处理。</p></div>
+              <div class="year-card"><h3>45-48 岁：普通中年与职业换形态</h3><p>开始带年轻工程师，从纯 Coder 变成架构 + 产品判断 + 数据方案。婚姻、家务、孩子教育和朋友减少成为真实生活的一部分。</p></div>
+              <div class="year-card"><h3>49 岁：自己的健康进入议程</h3><p>体检指标异常，减少加班，开始力量训练，真正意识到做 Health 并不能自动让自己健康。</p></div>
+            </div>
+          </section>
+
+          <section class="section" id="timeline-50">
+            <div class="section-head">
+              <h2>六、50-59 岁：兜底和照护成为主线</h2>
+              <span class="badge">下降一级仍能活</span>
+            </div>
+            <div class="timeline">
+              <div class="year-card"><h3>50 岁：没有成为行业名人</h3><p>职位可能是 Healthcare Architect / Data Architect / Technical Lead。竞争维度变成系统理解 + 行业判断 + 沟通。</p></div>
+              <div class="year-card"><h3>51-53 岁：父母成为生活中心之一</h3><p>频繁看病、整理病历、和医生沟通。年轻时学过的 Health Informatics 第一次直接服务于家庭。</p></div>
+              <div class="year-card"><h3>54-55 岁：一次失业与真正理解兜底</h3><p>公司重组被裁，接受薪资下降 25% 的医疗 IT 顾问/架构岗位。兜底不是不失业，而是失业后还能找到低一级但可以继续生活的工作。</p></div>
+              <div class="year-card"><h3>56-59 岁：孩子离家与主动降速</h3><p>孩子外地读大学，夫妻重新有时间。父亲身体下降后工作降到 80%，收入下降，但陪伴增加，时间调节也成为职业资产。</p></div>
+            </div>
+          </section>
+
+          <section class="section" id="timeline-60">
+            <div class="section-head">
+              <h2>七、60-70 岁：身份变简单，城市回到城市</h2>
+              <span class="badge">半退休</span>
+            </div>
+            <div class="timeline">
+              <div class="year-card"><h3>60-64 岁：半退休与父母离开</h3><p>做顾问、培训、系统评审、年轻团队指导。父母相继离世后，开始整理几十年的笔记，发现 Software、Health、哲学、教育并不冲突。</p></div>
+              <div class="year-card"><h3>65-68 岁：不再定义职业</h3><p>别人问以前做什么，回答“做医疗软件和数据”。身体成为新的项目，开始使用以前参与设计过的健康系统。</p></div>
+              <div class="year-card"><h3>69-70 岁：低配结局</h3><p>北京、上海、苏州、济南、南京都只承担过人生一部分。没有哪座城市承担完整人生，所以没有哪座城市失败。</p></div>
+            </div>
+          </section>
+
+          <section class="section" id="robust">
+            <div class="section-head">
+              <h2>八、这条低配人生是否仍值得？</h2>
+              <span class="badge">鲁棒性测试</span>
+            </div>
+            <div class="grid-2">
+              <div class="panel">
+                <h3>如果低配结果仍然成立</h3>
+                <ul class="checklist">
+                  <li>稳定家庭</li>
+                  <li>可使用的专业技能</li>
+                  <li>父母陪伴</li>
+                  <li>相对健康</li>
+                  <li>几个朋友</li>
+                  <li>有意义的工作经验</li>
+                  <li>选择余地</li>
+                </ul>
+              </div>
+              <div class="panel">
+                <h3>如果必须依赖这些才成立</h3>
+                <ul class="checklist">
+                  <li>进头部大厂</li>
+                  <li>百万年薪</li>
+                  <li>房价上涨</li>
+                  <li>婚姻完美</li>
+                  <li>父母健康</li>
+                  <li>AI 持续繁荣</li>
+                </ul>
+              </div>
+            </div>
+            <div class="quote">这套 Health Informatics 路线真正值得保留的，不是 Health 三个字，而是它开始形成一种结构：硬底座不丢，领域逐步加深；城市可以阶段性使用；家庭发生变化时允许改道；40 岁以后从速度转向经验；50 岁以后即使下降一级仍然能活。</div>
+          </section>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>
