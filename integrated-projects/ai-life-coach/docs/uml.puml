@@ -1,0 +1,432 @@
+@startuml FiveDimensionalGrowthSystem
+
+title 五维成长系统 - 数据模型ER图
+
+skinparam backgroundColor #FEFEFE
+skinparam componentStyle rectangle
+
+' =============================================
+' 财务模块
+' =============================================
+package "财务模块 Financial" #LightBlue {
+  entity "FinancialRecord" as fr {
+    * id : BIGINT PK
+    --
+    * type : VARCHAR(20)
+    * amount : DECIMAL(12,2)
+    category : VARCHAR(50)
+    description : VARCHAR(500)
+    * record_date : DATE
+    created_at : DATETIME
+  }
+
+  entity "IncomeSource" as inc {
+    * id : BIGINT PK
+    --
+    * source_type : VARCHAR(50)
+    source_name : VARCHAR(100)
+    * amount : DECIMAL(12,2)
+    * income_date : DATE
+    source_unit : VARCHAR(100)
+    description : VARCHAR(500)
+    created_at : DATETIME
+  }
+
+  entity "ExpenseAnalysis" as exp {
+    * id : BIGINT PK
+    --
+    * expense_type : VARCHAR(50)
+    * amount : DECIMAL(12,2)
+    threshold : DECIMAL(12,2)
+    is_large_expense : TINYINT
+    * expense_date : DATE
+    notes : VARCHAR(500)
+    created_at : DATETIME
+  }
+
+  entity "CareerPlanning" as cp {
+    * id : BIGINT PK
+    --
+    * plan_type : VARCHAR(50)
+    * title : VARCHAR(255)
+    description : TEXT
+    target_date : DATE
+    status : VARCHAR(20)
+    progress : INT
+    created_at : DATETIME
+    updated_at : DATETIME
+  }
+
+  entity "DailyFinancialReview" as dfr {
+    * id : BIGINT PK
+    --
+    * review_date : DATE
+    total_income : DECIMAL(12,2)
+    total_expense : DECIMAL(12,2)
+    balance : DECIMAL(12,2)
+    balance_rate : DECIMAL(5,2)
+    reflection : TEXT
+    improvement_plan : TEXT
+    created_at : DATETIME
+  }
+}
+
+' =============================================
+' 健康模块
+' =============================================
+package "健康模块 Health" #LightGreen {
+  entity "HealthRecord" as hr {
+    * id : BIGINT PK
+    --
+    * record_type : VARCHAR(50)
+    * value : DECIMAL(10,2)
+    unit : VARCHAR(20)
+    * record_date : DATE
+    notes : VARCHAR(500)
+    created_at : DATETIME
+  }
+
+  entity "HygieneRecord" as hyg {
+    * id : BIGINT PK
+    --
+    * hygiene_type : VARCHAR(50)
+    hair_wash_date : DATE
+    hair_wash_frequency : VARCHAR(20)
+    * record_date : DATE
+    notes : VARCHAR(500)
+    created_at : DATETIME
+  }
+
+  entity "EmotionRecord" as emo {
+    * id : BIGINT PK
+    --
+    trigger_event : VARCHAR(500)
+    emotion_type : VARCHAR(50)
+    emotion_level : INT
+    inner_needs : TEXT
+    reflection : TEXT
+    * record_date : DATE
+    created_at : DATETIME
+  }
+
+  entity "ExerciseRecord" as exer {
+    * id : BIGINT PK
+    --
+    steps : INT
+    exercise_type : VARCHAR(50)
+    duration_minutes : INT
+    target_achievement : DECIMAL(5,2)
+    feeling : TEXT
+    * record_date : DATE
+    created_at : DATETIME
+  }
+
+  entity "DietRecord" as diet {
+    * id : BIGINT PK
+    --
+    * meal_type : VARCHAR(20)
+    * meal_time : TIME
+    location : VARCHAR(100)
+    food_content : VARCHAR(500)
+    food_category : VARCHAR(50)
+    cost : DECIMAL(10,2)
+    * record_date : DATE
+    created_at : DATETIME
+  }
+
+  entity "SleepRecord" as sleep {
+    * id : BIGINT PK
+    --
+    * sleep_time : TIME
+    * wake_time : TIME
+    sleep_duration : INT
+    fall_asleep_duration : INT
+    night_wake_count : INT
+    sleep_disturbance : VARCHAR(500)
+    * record_date : DATE
+    created_at : DATETIME
+  }
+
+  entity "IntimateRecord" as intimate {
+    * id : BIGINT PK
+    --
+    * record_date : DATE
+    notes : VARCHAR(500)
+    created_at : DATETIME
+  }
+}
+
+' =============================================
+' 时间模块
+' =============================================
+package "时间模块 Time" #LightYellow {
+  entity "TimeRecord" as tr {
+    * id : BIGINT PK
+    --
+    * task_name : VARCHAR(255)
+    * duration_minutes : INT
+    category : VARCHAR(50)
+    * record_date : DATE
+    created_at : DATETIME
+  }
+
+  entity "PomodoroRecord" as pom {
+    * id : BIGINT PK
+    --
+    * task_name : VARCHAR(255)
+    pomodoro_count : INT
+    * duration_minutes : INT
+    break_duration : INT
+    status : VARCHAR(20)
+    * record_date : DATE
+    created_at : DATETIME
+  }
+}
+
+' =============================================
+' 心灵模块
+' =============================================
+package "心灵模块 Mind" #LightPink {
+  entity "GrowthPathRecord" as gpr {
+    * id : BIGINT PK
+    --
+    * path_type : VARCHAR(50)
+    * title : VARCHAR(255)
+    description : TEXT
+    status : VARCHAR(20)
+    * record_date : DATE
+    created_at : DATETIME
+  }
+
+  entity "KnowledgeExperience" as ke {
+    * id : BIGINT PK
+    --
+    * record_type : VARCHAR(50)
+    * title : VARCHAR(255)
+    content : TEXT
+    duration_minutes : INT
+    understanding_level : INT
+    reflection : TEXT
+    * record_date : DATE
+    created_at : DATETIME
+  }
+
+  entity "SynchronicityPractice" as sp {
+    * id : BIGINT PK
+    --
+    * practice_type : VARCHAR(50)
+    * title : VARCHAR(255)
+    duration_minutes : INT
+    state_description : TEXT
+    balance_level : INT
+    * record_date : DATE
+    created_at : DATETIME
+  }
+
+  entity "HealingPractice" as hp {
+    * id : BIGINT PK
+    --
+    * healing_type : VARCHAR(50)
+    hawkins_level : INT
+    * title : VARCHAR(255)
+    technique : VARCHAR(100)
+    content : TEXT
+    duration_minutes : INT
+    progress : INT
+    feeling : TEXT
+    insight : TEXT
+    * record_date : DATE
+    created_at : DATETIME
+  }
+
+  entity "PhilStutzTool" as pst {
+    * id : BIGINT PK
+    --
+    * tool_name : VARCHAR(50)
+    application_scenario : TEXT
+    预见_content : TEXT
+    energy_level : INT
+    anxiety_source : VARCHAR(255)
+    body_part : VARCHAR(100)
+    symptom_description : TEXT
+    uncertainty_type : VARCHAR(100)
+    acceptance_level : INT
+    relationship_object : VARCHAR(100)
+    ideal_scene : TEXT
+    activity_type : VARCHAR(100)
+    challenge_level : INT
+    focus_level : INT
+    flow_experience : TEXT
+    worry_content : TEXT
+    transformation_result : TEXT
+    mindset_change : TEXT
+    problem_challenge : TEXT
+    upgrade_perspective : TEXT
+    growth_gain : TEXT
+    resource_type : VARCHAR(100)
+    value_evaluation : TEXT
+    inner_strength : INT
+    * record_date : DATE
+    created_at : DATETIME
+  }
+
+  entity "CoachingTool" as ct {
+    * id : BIGINT PK
+    --
+    * tool_type : VARCHAR(50)
+    application_scenario : TEXT
+    driving_forces : TEXT
+    resistance_forces : TEXT
+    combined_analysis : TEXT
+    decision_direction : VARCHAR(100)
+    stage : VARCHAR(50)
+    experience_depth : INT
+    collective_wisdom : TEXT
+    dimension_name : VARCHAR(100)
+    dimension_scores : TEXT
+    imbalance_area : VARCHAR(100)
+    adjustment_action : TEXT
+    trigger_event : TEXT
+    response_type : VARCHAR(20)
+    body_response : TEXT
+    regulation_method : TEXT
+    recovery_status : VARCHAR(50)
+    nlp_technique : VARCHAR(100)
+    transformation_effect : TEXT
+    language_pattern : TEXT
+    grammar_practice : TEXT
+    communication_improvement : TEXT
+    * record_date : DATE
+    created_at : DATETIME
+  }
+}
+
+' =============================================
+' 关系模块
+' =============================================
+package "关系模块 Relationships" #LightCoral {
+  entity "RelationshipRecord" as rr {
+    * id : BIGINT PK
+    --
+    * person_name : VARCHAR(100)
+    interaction_type : VARCHAR(50)
+    notes : VARCHAR(500)
+    * record_date : DATE
+    created_at : DATETIME
+  }
+
+  entity "NaturalRelationship" as nr {
+    * id : BIGINT PK
+    --
+    activity_type : VARCHAR(50)
+    duration_minutes : INT
+    insight : TEXT
+    environment_change : VARCHAR(500)
+    * record_date : DATE
+    created_at : DATETIME
+  }
+
+  entity "SocialRelationship" as sr {
+    * id : BIGINT PK
+    --
+    activity_type : VARCHAR(50)
+    social_role : VARCHAR(100)
+    role_satisfaction : INT
+    contribution_type : VARCHAR(50)
+    contribution_impact : TEXT
+    * record_date : DATE
+    created_at : DATETIME
+  }
+
+  entity "FamilyRelationship" as frr {
+    * id : BIGINT PK
+    --
+    family_member : VARCHAR(100)
+    interaction_activity : VARCHAR(500)
+    topic : VARCHAR(255)
+    conversation_result : TEXT
+    family_matter_type : VARCHAR(50)
+    effort_harvest : VARCHAR(500)
+    * record_date : DATE
+    created_at : DATETIME
+  }
+
+  entity "FriendRelationship" as fri {
+    * id : BIGINT PK
+    --
+    friend_name : VARCHAR(100)
+    contact_method : VARCHAR(50)
+    contact_content : TEXT
+    maintenance_activity : VARCHAR(500)
+    maintenance_frequency : VARCHAR(20)
+    support_type : VARCHAR(50)
+    support_feeling : TEXT
+    * record_date : DATE
+    created_at : DATETIME
+  }
+
+  entity "ColleagueRelationship" as cr {
+    * id : BIGINT PK
+    --
+    colleague_name : VARCHAR(100)
+    collaboration_content : TEXT
+    social_activity : VARCHAR(500)
+    activity_gain : TEXT
+    relationship_satisfaction : INT
+    satisfaction_reason : TEXT
+    * record_date : DATE
+    created_at : DATETIME
+  }
+}
+
+' =============================================
+' BookGrowth 已有表
+' =============================================
+package "BookGrowth 读书模块" #LightGray {
+  entity "Book" as book {
+    * id : BIGINT PK
+    --
+    * title : VARCHAR(255)
+    author : VARCHAR(100)
+    total_pages : INT
+    start_date : DATE
+    finish_date : DATE
+    reading_gains : TEXT
+    status : VARCHAR(20)
+    rating : INT
+    created_at : DATETIME
+    updated_at : DATETIME
+  }
+
+  entity "Note" as note {
+    * id : BIGINT PK
+    --
+    * book_id : BIGINT FK
+    * title : VARCHAR(255)
+    content : TEXT
+    note_type : VARCHAR(50)
+    chapter : VARCHAR(255)
+    tags : VARCHAR(500)
+    note_date : DATE
+    page_number : INT
+    created_at : DATETIME
+    updated_at : DATETIME
+  }
+
+  entity "ReadingProgress" as rp {
+    * id : BIGINT PK
+    --
+    * book_id : BIGINT FK
+    * current_page : INT
+    progress_percent : DECIMAL(5,2)
+    * record_date : DATE
+    created_at : DATETIME
+  }
+}
+
+' =============================================
+' 关系线
+' =============================================
+note "五维成长系统\nv0.7\n基于BookGrowth扩展" as N1
+
+@enduml

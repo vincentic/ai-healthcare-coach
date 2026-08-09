@@ -1,0 +1,137 @@
+digraph FiveDimensionalGrowthSystem {
+    rankdir=TB;
+    splines=polyline;
+    nodesep=0.5;
+    ranksep=0.8;
+    bgcolor="#f5f5f5";
+    fontname="Arial";
+    fontsize=10;
+    node [shape=record, style="rounded,filled", fontname="Arial", fontsize=8];
+
+    // 核心主体表
+    human [label="{human|id:int PK|name|varchar(100)|gender|birth_date|height_cm|weight_kg|blood_type|occupation}" fillcolor="#FFECB3" color="#FF6F00"];
+
+    // 财务模块 v0.9
+    subgraph cluster_financial {
+        label="财务模块 Financial (v0.9)";
+        color="#1976D2";
+        style="rounded";
+        fillcolor="#E3F2FD";
+        financial_category [label="{financial_category|id:int PK|<f1> human_id:int FK|<f2> parent_id:int FK|category_level:int|category_name|category_type|income/expense}"];
+        financial_account [label="{financial_account|id:int PK|<f1> human_id:int FK|account_name|account_type|cash/bank/alipay|balance|bank_name}"];
+        financial_liability [label="{financial_liability|id:int PK|<f1> human_id:int FK|liability_type|liability_name|total_amount|remaining_amount|interest_rate|repayment_method}"];
+        financial_review [label="{financial_review|id:int PK|<f1> human_id:int FK|record_date|time|name|type|income/expense|amount|<f2> category_id:int FK|<f3> account_id:int FK|counterparty}"];
+        expense_details [label="{expense_details|id:int PK|<f1> review_id:int FK|<f2> human_id:int FK|item_name|unit_price|quantity|total_amount|payment_method}"];
+        income_details [label="{income_details|id:int PK|<f1> review_id:int FK|<f2> human_id:int FK|income_source|<f3> account_id:int FK|counterparty}"];
+        career_planning [label="{career_planning|id:int PK|<f1> human_id:int FK|plan_type|goal/skill|title|status|progress}"];
+        daily_financial_review [label="{daily_financial_review|id:int PK|<f1> human_id:int FK|review_date|total_income|total_expense|balance|balance_rate|reflection}"];
+        financial_permission [label="{financial_permission|id:int PK|<f1> human_id:int FK|<f2> shared_human_id:int FK|permission_type|visible/readonly/editable|granted_at|expires_at}"];
+    }
+
+    // 健康模块
+    subgraph cluster_health {
+        label="健康模块 Health";
+        color="#388E3C";
+        style="rounded";
+        fillcolor="#E8F5E9";
+        health_records [label="{health_records|<f1> human_id:int FK|record_type|value|unit|record_date}"];
+        hygiene_records [label="{hygiene_records|<f1> human_id:int FK|hygiene_type|hair_wash_date|record_date}"];
+        emotion_records [label="{emotion_records|<f1> human_id:int FK|trigger_event|emotion_type|emotion_level|inner_needs}"];
+        exercise_records [label="{exercise_records|<f1> human_id:int FK|steps|exercise_type|duration_minutes}"];
+        diet_records [label="{diet_records|<f1> human_id:int FK|meal_type|meal_time|location|food_content|cost}"];
+        sleep_records [label="{sleep_records|<f1> human_id:int FK|sleep_time|wake_time|sleep_duration|fall_asleep_duration}"];
+        intimate_records [label="{intimate_records|<f1> human_id:int FK|record_date|notes}"];
+    }
+
+    // 时间模块
+    subgraph cluster_time {
+        label="时间模块 Time";
+        color="#F57C00";
+        style="rounded";
+        fillcolor="#FFF3E0";
+        time_records [label="{time_records|<f1> human_id:int FK|task_name|duration_minutes|category|record_date}"];
+        pomodoro_records [label="{pomodoro_records|<f1> human_id:int FK|task_name|pomodoro_count|duration_minutes|status}"];
+    }
+
+    // 心灵模块
+    subgraph cluster_mind {
+        label="心灵模块 Mind";
+        color="#C2185B";
+        style="rounded";
+        fillcolor="#FCE4EC";
+        growth_path_records [label="{growth_path_records|<f1> human_id:int FK|path_type|title|status}"];
+        knowledge_experience [label="{knowledge_experience|<f1> human_id:int FK|record_type|title|duration_minutes}"];
+        synchronicity_practice [label="{synchronicity_practice|<f1> human_id:int FK|practice_type|title|duration_minutes}"];
+        healing_practice [label="{healing_practice|<f1> human_id:int FK|healing_type|hawkins_level|title|progress}"];
+        phil_stutz_tools [label="{phil_stutz_tools|<f1> human_id:int FK|tool_name|application_scenario|energy_level}"];
+        coaching_tools [label="{coaching_tools|<f1> human_id:int FK|tool_type|driving_forces|resistance_forces}"];
+    }
+
+    // 关系模块
+    subgraph cluster_relationships {
+        label="关系模块 Relationships";
+        color="#0288D1";
+        style="rounded";
+        fillcolor="#E1F5FE";
+        relationship_records [label="{relationship_records|<f1> human_id:int FK|person_name|interaction_type|record_date}"];
+        natural_relationships [label="{natural_relationships|<f1> human_id:int FK|activity_type|duration_minutes|insight}"];
+        social_relationships [label="{social_relationships|<f1> human_id:int FK|activity_type|social_role|role_satisfaction}"];
+        family_relationships [label="{family_relationships|<f1> human_id:int FK|family_member|topic|conversation_result}"];
+        friend_relationships [label="{friend_relationships|<f1> human_id:int FK|friend_name|contact_method|maintenance_activity}"];
+        colleague_relationships [label="{colleague_relationships|<f1> human_id:int FK|colleague_name|collaboration_content|relationship_satisfaction}"];
+    }
+
+    // BookGrowth模块
+    subgraph cluster_bookgrowth {
+        label="BookGrowth 读书模块";
+        color="#607D8B";
+        style="rounded";
+        fillcolor="#ECEFF1";
+        books [label="{books|<f1> human_id:int FK|title|author|total_pages|status}"];
+        notes [label="{notes|<f1> human_id:int FK|<f2> book_id:int FK|title|content|note_date}"];
+        reading_progress [label="{reading_progress|<f1> human_id:int FK|<f2> book_id:int FK|current_page|progress_percent}"];
+    }
+
+    // 关系线
+    human -> financial_category [label="1:N"];
+    human -> financial_account [label="1:N"];
+    human -> financial_liability [label="1:N"];
+    human -> financial_review [label="1:N"];
+    human -> career_planning [label="1:N"];
+    human -> daily_financial_review [label="1:N"];
+    human -> financial_permission [label="1:N"];
+    human -> health_records [label="1:N"];
+    human -> hygiene_records [label="1:N"];
+    human -> emotion_records [label="1:N"];
+    human -> exercise_records [label="1:N"];
+    human -> diet_records [label="1:N"];
+    human -> sleep_records [label="1:N"];
+    human -> intimate_records [label="1:N"];
+    human -> time_records [label="1:N"];
+    human -> pomodoro_records [label="1:N"];
+    human -> growth_path_records [label="1:N"];
+    human -> knowledge_experience [label="1:N"];
+    human -> synchronicity_practice [label="1:N"];
+    human -> healing_practice [label="1:N"];
+    human -> phil_stutz_tools [label="1:N"];
+    human -> coaching_tools [label="1:N"];
+    human -> relationship_records [label="1:N"];
+    human -> natural_relationships [label="1:N"];
+    human -> social_relationships [label="1:N"];
+    human -> family_relationships [label="1:N"];
+    human -> friend_relationships [label="1:N"];
+    human -> colleague_relationships [label="1:N"];
+    human -> books [label="1:N"];
+
+    // 财务内部关系
+    financial_category -> financial_category [label="parent_id"];
+    financial_review -> financial_category [label="category_id"];
+    financial_review -> financial_account [label="account_id"];
+    expense_details -> financial_review [label="review_id"];
+    income_details -> financial_review [label="review_id"];
+    income_details -> financial_account [label="account_id"];
+
+    // BookGrowth内部关系
+    books -> notes [label="1:N"];
+    books -> reading_progress [label="1:N"];
+}

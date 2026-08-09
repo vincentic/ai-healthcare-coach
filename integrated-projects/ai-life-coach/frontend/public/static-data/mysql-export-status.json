@@ -1,0 +1,8 @@
+{
+  "database": "growth_system",
+  "exportedAt": "2026-07-07T14:42:44Z",
+  "status": "exported",
+  "sqlFile": "mysql/export/growth_system-20260707-224244.sql",
+  "tableSummaryFile": "mysql/export/growth_system-20260707-224244-tables.tsv",
+  "staticSummaryFile": "static-data/mysql-summary.json"
+}

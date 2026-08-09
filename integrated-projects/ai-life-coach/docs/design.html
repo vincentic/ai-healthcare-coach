@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>五维成长系统 - 界面设计</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #f5f5f5; padding: 20px; }
+.container { max-width: 1200px; margin: 0 auto; }
+h1 { text-align: center; color: #1976D2; margin-bottom: 30px; font-size: 28px; }
+h2 { color: #333; margin: 20px 0 15px; font-size: 20px; border-bottom: 2px solid #1976D2; padding-bottom: 5px; }
+.page { background: #fff; border-radius: 8px; padding: 20px; margin-bottom: 30px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+.page-title { font-size: 22px; color: #1565C0; margin-bottom: 20px; text-align: center; }
+
+/* 五维模块卡片 */
+.modules { display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; }
+.module-card { width: 200px; height: 150px; border-radius: 10px; padding: 15px; text-align: center; display: flex; flex-direction: column; justify-content: center; }
+.module-card h3 { font-size: 16px; margin-bottom: 5px; }
+.module-card p { font-size: 12px; opacity: 0.8; }
+.module-card.financial { background: #E3F2FD; border: 2px solid #1976D2; color: #1565C0; }
+.module-card.health { background: #E8F5E9; border: 2px solid #388E3C; color: #2E7D32; }
+.module-card.time { background: #FFF3E0; border: 2px solid #F57C00; color: #EF6C00; }
+.module-card.mind { background: #FCE4EC; border: 2px solid #C2185B; color: #AD1457; }
+.module-card.relationships { background: #E1F5FE; border: 2px solid #0288D1; color: #0277BD; }
+
+/* Tab导航 */
+.tabs { display: flex; background: #E3F2FD; border-radius: 5px; overflow: hidden; margin-bottom: 20px; }
+.tab { padding: 12px 25px; cursor: pointer; color: #666; border: none; background: transparent; }
+.tab.active { background: #1976D2; color: #fff; }
+
+/* 表格 */
+table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+th { background: #1976D2; color: #fff; padding: 12px; text-align: left; }
+td { border: 1px solid #E0E0E0; padding: 10px; }
+tr:nth-child(even) { background: #f9f9f9; }
+.btn { background: #4CAF50; color: #fff; padding: 8px 15px; border: none; border-radius: 5px; cursor: pointer; }
+.btn-primary { background: #1976D2; }
+
+/* 健康卡片 */
+.health-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 10px; }
+.health-card { background: #fff; border: 2px solid #81C784; border-radius: 8px; padding: 15px; text-align: center; }
+.health-card h4 { color: #333; font-size: 13px; margin-bottom: 5px; }
+.health-card p { color: #666; font-size: 11px; }
+
+/* 霍金斯能量金字塔 */
+.pyramid { max-width: 800px; margin: 0 auto; }
+.level { padding: 15px 20px; margin: 5px 0; border-radius: 5px; color: #fff; text-align: center; }
+.level-500 { background: #9C27B0; margin-left: 0; width: 100%; }
+.level-350 { background: #3F51B5; margin-left: 5%; width: 90%; }
+.level-200 { background: #00BCD4; margin-left: 10%; width: 80%; }
+.level-base { background: #4CAF50; margin-left: 15%; width: 70%; }
+
+/* 工具网格 */
+.tools-grid { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 15px; }
+.tool-tag { background: #FCE4EC; border: 1px solid #E91E63; padding: 8px 15px; border-radius: 20px; font-size: 12px; color: #333; }
+
+/* 关系五边形 */
+.relationship-types { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 15px; }
+.rel-card { background: #fff; border-radius: 10px; padding: 20px; border: 2px solid; }
+.rel-card.natural { border-color: #4CAF50; }
+.rel-card.social { border-color: #1976D2; }
+.rel-card.family { border-color: #FF9800; }
+.rel-card.friends { border-color: #E91E63; }
+.rel-card.colleagues { border-color: #0288D1; }
+.rel-card h3 { margin-bottom: 10px; font-size: 15px; }
+.rel-card ul { font-size: 12px; color: #666; padding-left: 20px; }
+.rel-card li { margin: 5px 0; }
+
+/* ER图 */
+.er-diagram { background: #FAFAFA; padding: 20px; border-radius: 10px; }
+.entity { display: inline-block; background: #fff; border: 2px solid #333; border-radius: 5px; padding: 10px; margin: 10px; vertical-align: top; min-width: 180px; }
+.entity h4 { background: #1976D2; color: #fff; padding: 5px 10px; margin: -10px -10px 10px -10px; border-radius: 3px 3px 0 0; font-size: 12px; }
+.entity p { font-size: 11px; color: #333; margin: 3px 0; }
+.entity.pk { border-color: #FF9800; }
+
+/* 模态框 */
+.modal { background: #fff; border-radius: 10px; padding: 20px; margin-top: 20px; box-shadow: 0 5px 20px rgba(0,0,0,0.2); }
+.modal h3 { color: #1976D2; margin-bottom: 15px; }
+.form-group { margin-bottom: 15px; }
+.form-group label { display: block; margin-bottom: 5px; color: #666; font-size: 13px; }
+.form-group input, .form-group select, .form-group textarea { width: 100%; padding: 8px; border: 1px solid #E0E0E0; border-radius: 5px; font-size: 13px; }
+.form-row { display: flex; gap: 15px; }
+.form-row .form-group { flex: 1; }
+</style>
+</head>
+<body>
+<div class="container">
+<h1>五维成长系统 - Five-Dimensional Growth System</h1>
+
+<!-- 页面1: 五维概览 -->
+<div class="page">
+<h2>页面1: 五维模块概览</h2>
+<div class="modules">
+  <div class="module-card financial">
+    <h3>财务维度</h3>
+    <p>Financial</p>
+    <p style="margin-top:10px;font-size:11px;">收入/支出/事业规划</p>
+  </div>
+  <div class="module-card health">
+    <h3>健康维度</h3>
+    <p>Health</p>
+    <p style="margin-top:10px;font-size:11px;">运动/饮食/睡眠/清洁</p>
+  </div>
+  <div class="module-card time">
+    <h3>时间维度</h3>
+    <p>Time</p>
+    <p style="margin-top:10px;font-size:11px;">番茄钟/任务追踪</p>
+  </div>
+  <div class="module-card mind">
+    <h3>心灵维度</h3>
+    <p>Mind</p>
+    <p style="margin-top:10px;font-size:11px;">疗愈/成长/教练</p>
+  </div>
+  <div class="module-card relationships">
+    <h3>关系维度</h3>
+    <p>Relationships</p>
+    <p style="margin-top:10px;font-size:11px;">自然/社会/家庭/朋友/同事</p>
+  </div>
+</div>
+<p style="text-align:center;color:#999;margin-top:20px;">v0.7 - 2026-04-14</p>
+</div>
+
+<!-- 页面2: 财务模块 -->
+<div class="page">
+<h2>页面2: 财务模块 - 收入来源</h2>
+<div class="tabs">
+  <div class="tab active">收入来源</div>
+  <div class="tab">支出分析</div>
+  <div class="tab">事业规划</div>
+  <div class="tab">每日复盘</div>
+</div>
+<table>
+  <tr>
+    <th>来源类型</th><th>金额</th><th>日期</th><th>来源单位</th><th>描述</th><th>操作</th>
+  </tr>
+  <tr>
+    <td>工资</td><td>¥15,000</td><td>2026-04-01</td><td>XX公司</td><td>月薪</td><td><button class="btn" style="padding:5px 10px;">编辑</button></td>
+  </tr>
+  <tr>
+    <td>奖金</td><td>¥5,000</td><td>2026-03-31</td><td>XX公司</td><td>季度奖</td><td><button class="btn" style="padding:5px 10px;">编辑</button></td>
+  </tr>
+  <tr>
+    <td>副业</td><td>¥2,000</td><td>2026-04-10</td><td>自由职业</td><td>设计费</td><td><button class="btn" style="padding:5px 10px;">编辑</button></td>
+  </tr>
+</table>
+<button class="btn">+ 添加收入</button>
+<div class="modal">
+  <h3>添加收入记录</h3>
+  <div class="form-row">
+    <div class="form-group">
+      <label>来源类型</label>
+      <select><option>工资</option><option>奖金</option><option>副业</option><option>投资</option><option>其他</option></select>
+    </div>
+    <div class="form-group">
+      <label>金额</label>
+      <input type="number" placeholder="0.00">
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group">
+      <label>日期</label>
+      <input type="date">
+    </div>
+    <div class="form-group">
+      <label>来源单位</label>
+      <input type="text" placeholder="公司/平台名称">
+    </div>
+  </div>
+  <div class="form-group">
+    <label>描述</label>
+    <textarea rows="2" placeholder="备注信息"></textarea>
+  </div>
+  <button class="btn btn-primary">保存</button>
+</div>
+</div>
+
+<!-- 页面3: 健康模块 -->
+<div class="page">
+<h2>页面3: 健康模块 - 清洁卫生</h2>
+<div class="tabs">
+  <div class="tab active">清洁卫生</div>
+  <div class="tab">情绪复盘</div>
+  <div class="tab">运动复盘</div>
+  <div class="tab">饮食复盘</div>
+  <div class="tab">睡眠复盘</div>
+  <div class="tab">成年性生活</div>
+</div>
+<h3>清洁卫生 (12项)</h3>
+<div class="health-grid">
+  <div class="health-card"><h4>女生月事</h4><p>经期记录</p></div>
+  <div class="health-card"><h4>男生剃须</h4><p>剃须频率</p></div>
+  <div class="health-card"><h4>护发</h4><p>2天1次标准</p></div>
+  <div class="health-card"><h4>洗发记录</h4><p>频率评估</p></div>
+  <div class="health-card"><h4>护齿</h4><p>刷牙/牙线</p></div>
+  <div class="health-card"><h4>护肤</h4><p>早晚护理</p></div>
+  <div class="health-card"><h4>护体</h4><p>身体乳</p></div>
+  <div class="health-card"><h4>洗衣</h4><p>衣物分类</p></div>
+  <div class="health-card"><h4>洗袜</h4><p>更换记录</p></div>
+  <div class="health-card"><h4>清洁居所</h4><p>打扫记录</p></div>
+  <div class="health-card"><h4>清洁眼睛</h4><p>眼药水</p></div>
+  <div class="health-card"><h4>清洁内心</h4><p>冥想正念</p></div>
+</div>
+<button class="btn" style="margin-top:20px;">+ 添加记录</button>
+</div>
+
+<!-- 页面4: 心灵模块 -->
+<div class="page">
+<h2>页面4: 心灵模块 - 霍金斯能量层级</h2>
+<div class="pyramid">
+  <div class="level level-500">500+ 觉醒层：禅修/道家/基督教/王瑜伽</div>
+  <div class="level level-350">350-500 整合层：荣格/拉康/正念/萨满/瑜伽/心理剧/社会剧</div>
+  <div class="level level-200">200-350 发展层：教练/即兴戏剧/接触即兴/自由舞蹈/柔道</div>
+  <div class="level level-base">200以下 基础层：CBT/DBT/EFT/EMDR/费登奎斯/萨提亚/Phil Stutz</div>
+</div>
+
+<h3 style="margin-top:30px;">Phil Stutz The Tools (8项)</h3>
+<div class="tools-grid">
+  <span class="tool-tag">Barry - 应对抑郁</span>
+  <span class="tool-tag">Michel - 应对焦虑</span>
+  <span class="tool-tag">Star - 拥抱不确定性</span>
+  <span class="tool-tag">Relationship Generator - 改善人际关系</span>
+  <span class="tool-tag">Flow - 心流状态</span>
+  <span class="tool-tag">Inverse Prayer - 逆向祈祷</span>
+  <span class="tool-tag">Upgrade - 内在升级</span>
+  <span class="tool-tag">Inner Banker - 内在银行家</span>
+</div>
+
+<h3 style="margin-top:20px;">教练工具</h3>
+<div class="tools-grid">
+  <span class="tool-tag" style="background:#E1F5FE;border-color:#0288D1;">推力阻力公式</span>
+  <span class="tool-tag" style="background:#E1F5FE;border-color:#0288D1;">U型理论</span>
+  <span class="tool-tag" style="background:#E1F5FE;border-color:#0288D1;">平衡轮</span>
+  <span class="tool-tag" style="background:#E1F5FE;border-color:#0288D1;">战逃僵</span>
+  <span class="tool-tag" style="background:#E1F5FE;border-color:#0288D1;">NLP身心语言</span>
+  <span class="tool-tag" style="background:#E1F5FE;border-color:#0288D1;">乔姆斯基</span>
+</div>
+</div>
+
+<!-- 页面5: 关系模块 -->
+<div class="page">
+<h2>页面5: 关系模块 - 五类关系复盘</h2>
+<div class="relationship-types">
+  <div class="rel-card natural">
+    <h3>自然关系 Natural</h3>
+    <ul>
+      <li>自然接触(散步/登山/园艺)</li>
+      <li>自然感悟</li>
+      <li>环境变化观察</li>
+    </ul>
+    <button class="btn" style="margin-top:10px;">添加记录</button>
+  </div>
+  <div class="rel-card social">
+    <h3>社会关系 Social</h3>
+    <ul>
+      <li>社会活动(公益/社区)</li>
+      <li>社会角色反思</li>
+      <li>社会贡献</li>
+    </ul>
+    <button class="btn" style="margin-top:10px;">添加记录</button>
+  </div>
+  <div class="rel-card family">
+    <h3>家庭关系 Family</h3>
+    <ul>
+      <li>家庭互动活动</li>
+      <li>家庭沟通对话</li>
+      <li>家庭事务参与</li>
+    </ul>
+    <button class="btn" style="margin-top:10px;">添加记录</button>
+  </div>
+  <div class="rel-card friends">
+    <h3>朋友关系 Friends</h3>
+    <ul>
+      <li>朋友联系记录</li>
+      <li>友谊维护活动</li>
+      <li>朋友间支持互助</li>
+    </ul>
+    <button class="btn" style="margin-top:10px;">添加记录</button>
+  </div>
+  <div class="rel-card colleagues">
+    <h3>同事关系 Colleagues</h3>
+    <ul>
+      <li>工作协作记录</li>
+      <li>职场社交活动</li>
+      <li>同事关系满意度</li>
+    </ul>
+    <button class="btn" style="margin-top:10px;">添加记录</button>
+  </div>
+</div>
+</div>
+
+<!-- 页面6: ER图 -->
+<div class="page">
+<h2>页面6: 核心数据表 ER图</h2>
+<div class="er-diagram" style="text-align:center;">
+  <div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center;">
+    <div class="entity"><h4>financial_records</h4><p class="pk">id (PK)</p><p>type</p><p>amount</p><p>record_date</p></div>
+    <div class="entity"><h4>health_records</h4><p class="pk">id (PK)</p><p>record_type</p><p>value</p><p>record_date</p></div>
+    <div class="entity"><h4>time_records</h4><p class="pk">id (PK)</p><p>task_name</p><p>duration</p><p>record_date</p></div>
+    <div class="entity"><h4>healing_practice</h4><p class="pk">id (PK)</p><p>healing_type</p><p>hawkins_level</p><p>record_date</p></div>
+    <div class="entity"><h4>relationship_records</h4><p class="pk">id (PK)</p><p>person_name</p><p>interaction_type</p><p>record_date</p></div>
+    <div class="entity" style="border-color:#607D8B;"><h4 style="background:#607D8B;">books (BookGrowth)</h4><p class="pk">id (PK)</p><p>title</p><p>author</p><p>total_pages</p></div>
+    <div class="entity" style="border-color:#607D8B;"><h4 style="background:#607D8B;">notes (BookGrowth)</h4><p class="pk">id (PK)</p><p>book_id (FK)</p><p>title</p><p>note_date</p></div>
+  </div>
+  <p style="margin-top:20px;color:#666;font-size:12px;">各表通过 record_date 进行时间维度关联，notes.book_id → books.id 形成读书与心灵的联动</p>
+</div>
+</div>
+
+<p style="text-align:center;color:#999;margin:30px 0;">设计文档 v0.7 | 五维成长系统</p>
+</div>
+</body>
+</html>
