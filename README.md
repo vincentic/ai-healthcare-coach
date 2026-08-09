@@ -22,7 +22,7 @@ https://ai-healthcare-coach.vercel.app/
 - `ai-website-building/`：SEO 与工具站增长运营计划。
 - `ai-java-learning-practice/`：Java、数据库和框架技术底座资料。
 - `business-growth/`：产业研究与商业增长工作台。
-- `integrated-projects/`：从 `ai-life-coach`、`ai-care-coach` 与 `ai-language-coach` 整合进来的源码、文档与说明入口。
+- `feature-apps/`：生活运行、身心照护、语言支持等功能应用源码、文档与说明入口。
 
 ## 本地预览
 
