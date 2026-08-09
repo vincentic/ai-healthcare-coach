@@ -86,8 +86,8 @@ SCYS 入口：
 
 ## 线上地址
 
-- GitHub 仓库：https://github.com/vincentic/life-consistency-coach
-- Vercel 生产站点：https://life-consistency-coach.vercel.app
+- 本仓库功能页：../life-operating-system.html
+- 本仓库入口：../life-operating-system.html
 - SCYS 内容资讯：https://scys.com
 
 ## 技术结构
@@ -196,7 +196,7 @@ npx vercel frontend --prod
 生产别名：
 
 ```bash
-npx vercel alias set <deployment-url> life-consistency-coach.vercel.app
+npx vercel alias set <deployment-url> ai-healthcare-coach.vercel.app
 ```
 
 ## 近期方向

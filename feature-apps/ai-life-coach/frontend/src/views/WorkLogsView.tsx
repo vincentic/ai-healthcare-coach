@@ -51,12 +51,12 @@ const statusColors: Record<string, string> = {
 
 const projectLinks = [
   {
-    title: 'GitHub 仓库',
-    url: 'https://github.com/vincentic/life-consistency-coach',
+    title: 'Healthcare Coach 功能入口',
+    url: '/feature-apps/life-operating-system.html',
   },
   {
-    title: 'Vercel 生产站点',
-    url: 'https://life-consistency-coach.vercel.app',
+    title: '生活运行功能说明',
+    url: '/feature-apps/ai-life-coach/README.md',
   },
   {
     title: 'SCYS 内容资讯',
