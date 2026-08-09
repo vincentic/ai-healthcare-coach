@@ -48,6 +48,15 @@
       .panel, .link-card { padding: 18px; }
       .links { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-top: 16px; }
       .link-card strong { display: block; color: var(--text); margin-bottom: 6px; }
+      .actions { display: flex; flex-wrap: wrap; gap: 10px; }
+      .button {
+        border-radius: 8px;
+        background: var(--accent);
+        color: #fff;
+        font-weight: 900;
+        padding: 10px 13px;
+      }
+      .button.secondary { border: 1px solid var(--line); background: #fff; color: var(--accent); }
       code { border-radius: 6px; background: var(--soft); color: var(--text); padding: 2px 5px; }
       @media (max-width: 780px) {
         .top { align-items: flex-start; flex-direction: column; }
@@ -59,7 +68,7 @@
     <div class="page">
       <header class="top">
         <a href="../index.html#notes">返回服务总览</a>
-        <a href="https://github.com/vincentic/ai-life-coach">GitHub: ai-life-coach</a>
+        <a href="https://life-consistency-coach.vercel.app">打开线上应用</a>
       </header>
 
       <section class="hero">
@@ -67,32 +76,37 @@
         <h1>Life Operating System</h1>
         <p>生活运行应用，用来支持个人长期稳定运行。它把读书、健康、财务、时间、心灵、关系、每日回顾和工作日志放进同一个可追踪的操作台。</p>
         <div class="axis">核心问题：今天是否有行动记录？关键生活维度是否保持一致？下一步是否足够清楚、可执行、可复盘？</div>
+        <div class="actions">
+          <a class="button" href="https://life-consistency-coach.vercel.app">访问 Life Consistency Coach</a>
+          <a class="button secondary" href="https://github.com/vincentic/ai-life-coach">查看 GitHub</a>
+        </div>
       </section>
 
       <section class="grid">
         <div class="panel">
-          <h2>整合内容</h2>
+          <h2>支持 healthcare 的内容</h2>
           <ul>
-            <li>Next.js 前端源码：<code>feature-apps/ai-life-coach/frontend</code></li>
-            <li>NestJS 后端源码：<code>feature-apps/ai-life-coach/backend</code></li>
-            <li>MySQL 初始化脚本：<code>feature-apps/ai-life-coach/mysql</code></li>
-            <li>设计、Schema、UML、Consistency、Resilience 文档。</li>
+            <li>睡眠、身体、运动、情绪、时间与财务的长期记录。</li>
+            <li>每日回顾、周复盘、月度趋势和工作日志。</li>
+            <li>把 Health 转型节奏放回可持续生活系统中，避免高压执行后中断。</li>
+            <li>把读书、输入、输出和作品沉淀连接成长期资产。</li>
           </ul>
         </div>
         <div class="panel">
-          <h2>已排除内容</h2>
+          <h2>本项目展示方式</h2>
           <ul>
-            <li><code>.git</code>、<code>node_modules</code>、<code>dist</code>、<code>.next</code></li>
-            <li>运行日志和本地 <code>.env</code></li>
-            <li>本说明页只负责整合入口，暂不把该 Next/Nest 应用合并进当前静态站构建。</li>
+            <li>作为“生活运行”功能入口，服务职业验证中的睡眠、运动、复盘和节奏控制。</li>
+            <li>可用于记录 12 周 Health AI 小周期的真实执行证据。</li>
+            <li>适合承接 healthcare 工作台之外的个人底盘数据和复盘内容。</li>
+            <li>线上应用可直接打开使用；本页面负责说明它如何支撑 healthcare 出口服务。</li>
           </ul>
         </div>
       </section>
 
       <section class="links">
-        <a class="link-card" href="ai-life-coach/README.md"><strong>项目 README</strong><span>查看原项目定位、模块和部署说明。</span></a>
-        <a class="link-card" href="ai-life-coach/docs/manual.md"><strong>操作手册</strong><span>查看 life coach 系统的高层/中层/底层运行方式。</span></a>
-        <a class="link-card" href="ai-life-coach/docs/design.html"><strong>设计文档</strong><span>打开原项目设计页面。</span></a>
+        <a class="link-card" href="https://life-consistency-coach.vercel.app"><strong>线上应用</strong><span>打开生活一致性教练，查看当前可使用页面。</span></a>
+        <a class="link-card" href="ai-life-coach/docs/manual.md"><strong>运行手册</strong><span>查看高层方向、中层项目和底层行动的个人操作系统。</span></a>
+        <a class="link-card" href="ai-life-coach/docs/consistency.md"><strong>一致性训练</strong><span>查看如何把长期行动、复盘和作品沉淀稳定下来。</span></a>
       </section>
     </div>
   </body>

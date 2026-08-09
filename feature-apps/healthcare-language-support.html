@@ -48,6 +48,15 @@
       .panel, .link-card { padding: 18px; }
       .links { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-top: 16px; }
       .link-card strong { display: block; color: var(--text); margin-bottom: 6px; }
+      .actions { display: flex; flex-wrap: wrap; gap: 10px; }
+      .button {
+        border-radius: 8px;
+        background: var(--accent);
+        color: #fff;
+        font-weight: 900;
+        padding: 10px 13px;
+      }
+      .button.secondary { border: 1px solid var(--line); background: #fff; color: var(--accent); }
       code { border-radius: 6px; background: var(--soft); color: var(--text); padding: 2px 5px; }
       @media (max-width: 780px) {
         .top { align-items: flex-start; flex-direction: column; }
@@ -59,7 +68,7 @@
     <div class="page">
       <header class="top">
         <a href="../index.html#notes">返回服务总览</a>
-        <a href="https://github.com/vincentic/ai-language-coach">GitHub: ai-language-coach</a>
+        <a href="https://ai-language-coach.vercel.app">打开线上应用</a>
       </header>
 
       <section class="hero">
@@ -67,16 +76,20 @@
         <h1>AI Language Coach</h1>
         <p>语言支持应用，服务 ai-healthcare-coach 的跨文化沟通与患者教育场景。它聚焦 Shadow Reading 四步练习、i+1 可理解输入、高频词和实用短语，用于跨文化沟通、患者教育、国际医疗资料阅读和 healthcare 从业者语言支持。</p>
         <div class="axis">Listen → Shadow → Repeat → Apply，让语言能力从输入、跟读、复述走向真实医疗沟通场景中的主动输出。</div>
+        <div class="actions">
+          <a class="button" href="https://ai-language-coach.vercel.app">访问 AI Language Coach</a>
+          <a class="button secondary" href="https://github.com/vincentic/ai-language-coach">查看 GitHub</a>
+        </div>
       </section>
 
       <section class="grid">
         <div class="panel">
-          <h2>整合内容</h2>
+          <h2>支持 healthcare 的内容</h2>
           <ul>
-            <li>Next.js 前端源码：<code>feature-apps/ai-language-coach/frontend</code></li>
-            <li>FastAPI 后端源码：<code>feature-apps/ai-language-coach/backend</code></li>
-            <li>语言 mentoring 文档：<code>feature-apps/ai-language-coach/docs</code></li>
-            <li>配置模板：<code>.env.example</code></li>
+            <li>多语言医学资料阅读、跟读、复述和主动输出。</li>
+            <li>患者教育、问诊沟通、跨文化解释和医学短语训练。</li>
+            <li>高频词、实用短语、i+1 输入和 Shadow Reading 四步练习。</li>
+            <li>把语言输入转化为文章、课程、咨询、社群和服务内容。</li>
           </ul>
         </div>
         <div class="panel">
@@ -102,17 +115,17 @@
           </ul>
         </div>
         <div class="panel">
-          <h2>整合边界</h2>
+          <h2>本项目展示方式</h2>
           <ul>
-            <li>已保留源码、文档和配置模板。</li>
-            <li>已排除 <code>.git</code>、依赖目录、构建产物和本地密钥。</li>
-            <li>当前作为 healthcare 工作台的语言支持功能入口，暂不合并进根站构建。</li>
+            <li>作为“语言支持”功能入口，服务 international healthcare communication。</li>
+            <li>用于患者教育、医学科普、国际资料阅读和跨文化服务沟通。</li>
+            <li>线上应用可直接打开练习；本页说明它如何嵌入 healthcare 服务资产。</li>
           </ul>
         </div>
       </section>
 
       <section class="links">
-        <a class="link-card" href="ai-language-coach/README.md"><strong>项目 README</strong><span>查看原项目定位、功能和部署说明。</span></a>
+        <a class="link-card" href="https://ai-language-coach.vercel.app"><strong>线上应用</strong><span>打开语言练习工作台，查看当前可用内容。</span></a>
         <a class="link-card" href="ai-language-coach/docs/language-mentoring-modules.md"><strong>模块设计</strong><span>查看 language mentoring 的完整模块拆解。</span></a>
         <a class="link-card" href="ai-language-coach/docs/value-creation-flywheel.md"><strong>价值飞轮</strong><span>查看输入、输出、反思、产品化和反馈循环。</span></a>
       </section>
