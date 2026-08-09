@@ -342,18 +342,15 @@
               <h2>healthcare 出口服务台</h2>
               <p>把医疗信息、AI 工程、产品交付和增长运营整合为统一出口，面向 healthcare 场景提供从知识库到应用落地的服务入口。</p>
             </div>
-            <span class="doc-count">10 个入口 · 60+ 交付资产</span>
+            <span class="doc-count">5 个功能区 · 60+ 交付资产</span>
           </div>
           <div class="notes-browser">
             <div class="notes-tabs" role="tablist" aria-label="healthcare 出口服务导航">
               <button class="notes-tab active" type="button" data-notes-filter="all" role="tab" aria-selected="true">服务总览<span>统一入口 / 全部资产</span></button>
               <button class="notes-tab" type="button" data-notes-filter="guide" role="tab" aria-selected="false">参考指南<span>风险指南 / 决策框架</span></button>
-              <button class="notes-tab" type="button" data-notes-filter="life" role="tab" aria-selected="false">生活运行<span>复盘 / 财务 / 关系</span></button>
-              <button class="notes-tab" type="button" data-notes-filter="care" role="tab" aria-selected="false">身心照护<span>护理 / 恢复 / 疗愈</span></button>
-              <button class="notes-tab" type="button" data-notes-filter="language" role="tab" aria-selected="false">语言支持<span>跨文化 / 患者教育</span></button>
+              <button class="notes-tab" type="button" data-notes-filter="apps" role="tab" aria-selected="false">支持应用<span>生活 / 照护 / 语言</span></button>
               <button class="notes-tab" type="button" data-notes-filter="knowledge" role="tab" aria-selected="false">医疗知识库<span>信息整理 / 技术底座</span></button>
-              <button class="notes-tab" type="button" data-notes-filter="service" role="tab" aria-selected="false">AI 交付服务<span>产品 / 工程 / 上线</span></button>
-              <button class="notes-tab" type="button" data-notes-filter="ops" role="tab" aria-selected="false">增长运营服务<span>内容 / SEO / 商业化</span></button>
+              <button class="notes-tab" type="button" data-notes-filter="delivery" role="tab" aria-selected="false">交付增长<span>产品 / 工程 / SEO</span></button>
             </div>
             <div class="notes-content">
               <nav class="notes-grid" aria-label="healthcare 服务资产导航">
@@ -554,16 +551,16 @@
               <span>把未来 10-20 年路线收束成 Medical Knowledge AI、Clinical Informatics 和 Pharma Informatics 三个出口。</span>
             </a>
             <a class="note-link" href="feature-apps/life-operating-system.html" data-doc="feature-apps/life-operating-system.html" data-view="html">
-              <strong>生活运行应用 · Life Operating System</strong>
-              <span>连接线上 Life Consistency Coach，展示读书、健康、财务、时间、关系、复盘和工作日志能力。</span>
+              <strong>支持应用 · Life Operating System</strong>
+              <span>由 ai-life-coach 代码形成生活运行功能，展示健康、财务、时间、关系、复盘和工作日志能力。</span>
             </a>
             <a class="note-link" href="feature-apps/care-recovery-support.html" data-doc="feature-apps/care-recovery-support.html" data-view="html">
-              <strong>身心照护应用 · Care Recovery Support</strong>
-              <span>连接线上 AI Care Coach，展示护理、恢复、状态判断与身心支持内容。</span>
+              <strong>支持应用 · Care Recovery Support</strong>
+              <span>由 ai-care-coach 代码形成身心照护功能，展示护理、恢复、状态判断与身心支持内容。</span>
             </a>
             <a class="note-link" href="feature-apps/healthcare-language-support.html" data-doc="feature-apps/healthcare-language-support.html" data-view="html">
-              <strong>语言支持应用 · Healthcare Language Support</strong>
-              <span>连接线上 AI Language Coach，支持 healthcare 跨文化沟通、患者教育和医学资料阅读。</span>
+              <strong>支持应用 · Healthcare Language Support</strong>
+              <span>由 ai-language-coach 代码形成语言支持功能，服务跨文化沟通、患者教育和医学资料阅读。</span>
             </a>
             <a class="note-link" href="medical-info-engineering/week-01.md" data-doc="medical-info-engineering/week-01.md">
               <strong>医疗知识库 · 第 1 周</strong>
@@ -670,29 +667,23 @@
       const readerClose = document.querySelector("#reader-close");
 
       const getNoteCategory = (path) => {
-        if (path === "feature-apps/life-operating-system.html") {
-          return "life";
-        }
-        if (path === "feature-apps/care-recovery-support.html") {
-          return "care";
-        }
-        if (path === "feature-apps/healthcare-language-support.html") {
-          return "language";
+        if (path === "feature-apps/life-operating-system.html" || path === "feature-apps/care-recovery-support.html" || path === "feature-apps/healthcare-language-support.html") {
+          return "apps";
         }
         if (path === "medical-info-engineering/health-career-12-week-cycle.html" || path === "medical-info-engineering/jinan-health-informatics-30-day-validation.html" || path === "medical-info-engineering/health-informatics-city-guide.html" || path === "medical-info-engineering/health-informatics-lifetime-flexibility-guide.html" || path === "medical-info-engineering/healthcare-long-term-career-exits.html") {
           return "guide";
         }
         if (path === "business-growth/car-robotics.html" || path === "business-growth/industry-research.html") {
-          return "service";
+          return "delivery";
         }
         if (path.startsWith("medical-info-engineering/") || path.startsWith("ai-java-learning-practice/") || path === "plan.md" || path === "README.md") {
           return "knowledge";
         }
         if (path.startsWith("ai-website-building/") || path.startsWith("business-growth/") || path.startsWith("tech-growth/")) {
-          return "ops";
+          return "delivery";
         }
         if (path.startsWith("product-growth/") || path.startsWith("design-growth/") || path.startsWith("software-engineering-practice/")) {
-          return "service";
+          return "delivery";
         }
         return "knowledge";
       };

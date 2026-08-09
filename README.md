@@ -9,6 +9,7 @@ https://ai-healthcare-coach.vercel.app/
 ## 服务出口
 
 - 医疗知识库：医药信息整理、结构化数据、搜索筛选、来源与风险边界沉淀。
+- 支持应用：生活运行、身心照护、语言支持三个功能应用，支撑 healthcare 场景下的持续复盘、恢复照护和跨文化沟通。
 - AI 交付服务：产品需求、工程实现、质量验收、GitHub/Vercel 上线和复盘。
 - 增长运营服务：SEO 选题、内容日历、工具站落地、收录监控和商业化验证。
 - 能力建设资产：Java、数据库、Web、AI 平台和长期技术路线资料。
@@ -22,7 +23,7 @@ https://ai-healthcare-coach.vercel.app/
 - `ai-website-building/`：SEO 与工具站增长运营计划。
 - `ai-java-learning-practice/`：Java、数据库和框架技术底座资料。
 - `business-growth/`：产业研究与商业增长工作台。
-- `feature-apps/`：生活运行、身心照护、语言支持等线上功能入口与内容资产说明。
+- `feature-apps/`：ai-life-coach、ai-care-coach、ai-language-coach 形成的生活运行、身心照护、语言支持功能代码与展示入口。
 
 ## 本地预览
 
