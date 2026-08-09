@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>12 周 Health AI 职业与生活验证周期</title>
+    <style>
+      :root {
+        color-scheme: light;
+        font-family: Inter, "Segoe UI", Arial, sans-serif;
+        --bg: #f5f8f7;
+        --surface: #ffffff;
+        --soft: #edf5f2;
+        --soft-blue: #eef5fb;
+        --text: #172033;
+        --muted: #5f6f7c;
+        --line: #d6e2de;
+        --green: #20745e;
+        --blue: #176f93;
+        --gold: #8b6824;
+        --red: #a34945;
+        --ink: #24384f;
+        --shadow: rgba(30, 52, 60, 0.09);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--text);
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      h1,
+      h2,
+      h3,
+      p {
+        margin-top: 0;
+      }
+
+      p,
+      li,
+      td {
+        color: var(--muted);
+        line-height: 1.75;
+      }
+
+      .layout {
+        display: grid;
+        grid-template-columns: 280px minmax(0, 1fr);
+        min-height: 100vh;
+      }
+
+      .rail {
+        position: sticky;
+        top: 0;
+        height: 100vh;
+        overflow: auto;
+        border-right: 1px solid var(--line);
+        background: #fbfdfc;
+        padding: 20px;
+      }
+
+      .brand {
+        display: grid;
+        gap: 10px;
+        margin-bottom: 22px;
+      }
+
+      .brand a {
+        color: var(--blue);
+        font-size: 0.9rem;
+        font-weight: 900;
+      }
+
+      .brand h1 {
+        margin: 0;
+        font-size: 1.2rem;
+        line-height: 1.3;
+      }
+
+      .brand p {
+        margin: 0;
+        font-size: 0.92rem;
+      }
+
+      .nav {
+        display: grid;
+        gap: 8px;
+      }
+
+      .nav a {
+        border: 1px solid transparent;
+        border-radius: 8px;
+        color: var(--ink);
+        font-size: 0.92rem;
+        font-weight: 800;
+        padding: 10px 11px;
+      }
+
+      .nav a:hover,
+      .nav a:focus-visible {
+        border-color: var(--line);
+        background: var(--soft);
+        outline: none;
+      }
+
+      main {
+        min-width: 0;
+        padding: 24px;
+      }
+
+      .workspace {
+        max-width: 1180px;
+        margin: 0 auto;
+        display: grid;
+        gap: 20px;
+      }
+
+      .hero,
+      .panel,
+      .week,
+      .rule,
+      .metric {
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--surface);
+        box-shadow: 0 12px 28px var(--shadow);
+      }
+
+      .hero {
+        display: grid;
+        gap: 18px;
+        padding: 24px;
+      }
+
+      .eyebrow {
+        color: var(--green);
+        font-size: 0.82rem;
+        font-weight: 900;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .hero h2 {
+        margin: 0;
+        font-size: clamp(2rem, 4vw, 3.45rem);
+        line-height: 1.14;
+      }
+
+      .lead {
+        max-width: 880px;
+        margin: 0;
+        color: var(--muted);
+        font-size: 1.05rem;
+        line-height: 1.85;
+      }
+
+      .axis {
+        border-left: 4px solid var(--green);
+        background: #eff8f4;
+        color: #264b3d;
+        font-size: 1.02rem;
+        font-weight: 900;
+        line-height: 1.7;
+        padding: 13px 15px;
+      }
+
+      .section {
+        display: grid;
+        gap: 12px;
+      }
+
+      .section-head {
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+        gap: 16px;
+      }
+
+      .section-head h2 {
+        margin: 0;
+        font-size: 1.28rem;
+      }
+
+      .badge {
+        flex: 0 0 auto;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        background: #fff;
+        color: var(--ink);
+        font-size: 0.82rem;
+        font-weight: 900;
+        padding: 7px 10px;
+      }
+
+      .panel,
+      .week {
+        padding: 18px;
+      }
+
+      .grid-2 {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+      }
+
+      .grid-3 {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 14px;
+      }
+
+      .table-wrap {
+        overflow-x: auto;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: #fff;
+      }
+
+      table {
+        width: 100%;
+        min-width: 680px;
+        border-collapse: collapse;
+      }
+
+      th,
+      td {
+        border-bottom: 1px solid var(--line);
+        padding: 12px 13px;
+        text-align: left;
+        vertical-align: top;
+      }
+
+      th {
+        color: var(--ink);
+        background: var(--soft);
+        font-size: 0.88rem;
+        font-weight: 900;
+      }
+
+      tr:last-child td {
+        border-bottom: 0;
+      }
+
+      .week {
+        display: grid;
+        gap: 14px;
+      }
+
+      .week h3 {
+        margin: 0;
+        color: var(--ink);
+        font-size: 1.12rem;
+      }
+
+      .week .goal {
+        border-left: 4px solid var(--blue);
+        background: var(--soft-blue);
+        color: #234963;
+        font-weight: 800;
+        padding: 10px 12px;
+      }
+
+      .quote {
+        border-left: 4px solid var(--gold);
+        background: #fff8e8;
+        color: #59451f;
+        font-weight: 900;
+        padding: 12px 14px;
+      }
+
+      .flow {
+        display: grid;
+        gap: 8px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .flow li {
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: #fbfdfc;
+        color: var(--ink);
+        font-weight: 800;
+        padding: 10px 12px;
+      }
+
+      .checklist {
+        display: grid;
+        gap: 8px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .checklist li {
+        border-left: 3px solid var(--green);
+        background: #f6fbf8;
+        padding: 8px 10px;
+      }
+
+      .decision {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 10px;
+      }
+
+      .rule,
+      .metric {
+        padding: 14px;
+      }
+
+      .rule strong,
+      .metric strong {
+        display: block;
+        margin-bottom: 6px;
+        color: var(--ink);
+      }
+
+      .score {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 10px;
+      }
+
+      .score .rule:nth-child(1) {
+        border-color: rgba(32, 116, 94, 0.35);
+      }
+
+      .score .rule:nth-child(4) {
+        border-color: rgba(163, 73, 69, 0.32);
+      }
+
+      code {
+        border-radius: 6px;
+        background: #e8eef2;
+        color: var(--ink);
+        padding: 2px 5px;
+      }
+
+      pre {
+        overflow: auto;
+        border-radius: 8px;
+        background: #142033;
+        color: #eff6ff;
+        line-height: 1.65;
+        padding: 14px;
+      }
+
+      @media (max-width: 920px) {
+        .layout {
+          grid-template-columns: 1fr;
+        }
+
+        .rail {
+          position: static;
+          height: auto;
+          border-right: 0;
+          border-bottom: 1px solid var(--line);
+        }
+
+        .nav {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .grid-2,
+        .grid-3,
+        .decision,
+        .score {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 620px) {
+        main {
+          padding: 16px;
+        }
+
+        .rail {
+          padding: 16px;
+        }
+
+        .nav {
+          grid-template-columns: 1fr;
+        }
+
+        .hero,
+        .panel,
+        .week {
+          padding: 16px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="layout">
+      <aside class="rail">
+        <div class="brand">
+          <a href="../index.html#notes">返回服务总览</a>
+          <h1>12 周 Health AI 职业与生活验证周期</h1>
+          <p>从想象路线进入作品、行业反馈、城市边界和下一步证据。</p>
+        </div>
+        <nav class="nav" aria-label="参考文档导航">
+          <a href="#acceptance">总验收</a>
+          <a href="#weeks-1-2">第 1-2 周</a>
+          <a href="#weeks-3-4">第 3-4 周</a>
+          <a href="#weeks-5-6">第 5-6 周</a>
+          <a href="#week-7">第 7 周</a>
+          <a href="#week-8">第 8 周</a>
+          <a href="#week-9">第 9 周</a>
+          <a href="#week-10">第 10 周</a>
+          <a href="#week-11">第 11 周</a>
+          <a href="#week-12">第 12 周</a>
+          <a href="#metrics">每周数字</a>
+        </nav>
+      </aside>
+
+      <main>
+        <div class="workspace">
+          <section class="hero">
+            <span class="eyebrow">Operating Cycle / Health AI Career</span>
+            <h2>完成一次可验证的职业与生活小周期</h2>
+            <p class="lead">接下来 12 周，不把目标设成“决定到底去济南、亦庄还是上海”，而是把 Software → AI/Data → Health 方向做出真实证据，同时降低对城市选择的心理绑架。</p>
+            <div class="axis">Software Engineering → AI/Data → Health Informatics → Medical Knowledge / Pharma AI</div>
+          </section>
+
+          <section class="section" id="acceptance">
+            <div class="section-head">
+              <h2>12 周总验收标准</h2>
+              <span class="badge">只看 6 个结果</span>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>结果</th>
+                    <th>验收标准</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Health 领域理解</td>
+                    <td>能独立画出医疗信息化、医疗 AI、医药数字化产业图。</td>
+                  </tr>
+                  <tr>
+                    <td>技术升级</td>
+                    <td>完成一个可运行的 Health AI 项目。</td>
+                  </tr>
+                  <tr>
+                    <td>作品资产</td>
+                    <td>GitHub 有 README、架构图、Demo、复盘。</td>
+                  </tr>
+                  <tr>
+                    <td>行业验证</td>
+                    <td>至少和 6 位真实从业者交流。</td>
+                  </tr>
+                  <tr>
+                    <td>城市判断</td>
+                    <td>对济南、亦庄、上海形成“进入条件—退出条件”，而非喜欢或讨厌。</td>
+                  </tr>
+                  <tr>
+                    <td>身心底盘</td>
+                    <td>连续 12 周保持基本睡眠、运动和复盘，不以透支换进度。</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section class="week" id="weeks-1-2">
+            <h3>第 1-2 周：收束，不再扩张</h3>
+            <div class="goal">目标：确定未来一年只打一个主轴。</div>
+            <p>暂时不同时学计算生物、脑机接口、合成生物、机器人。先固定主轴，避免把焦虑包装成扩张。</p>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>已有</th>
+                    <th>需要补</th>
+                    <th>暂时不学</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>前端/工程经验</td>
+                    <td>Python</td>
+                    <td>湿实验</td>
+                  </tr>
+                  <tr>
+                    <td>Web 产品</td>
+                    <td>SQL/Data</td>
+                    <td>深度分子生物</td>
+                  </tr>
+                  <tr>
+                    <td>软件项目</td>
+                    <td>LLM/RAG</td>
+                    <td>合成生物</td>
+                  </tr>
+                  <tr>
+                    <td>AI 兴趣</td>
+                    <td>Health Informatics</td>
+                    <td>脑机接口</td>
+                  </tr>
+                  <tr>
+                    <td>产品意识</td>
+                    <td>医疗工作流</td>
+                    <td>全套医学本科</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="grid-2">
+              <div class="panel">
+                <h3>第 1 周产出</h3>
+                <p>一张自己的能力地图：已有能力、必须补的能力、暂时不学的范围。</p>
+              </div>
+              <div class="panel">
+                <h3>第 2 周产出</h3>
+                <p>Health 行业地图：医院 → HIS/EMR/LIS/PACS → 医疗数据 → AI → 医药 → Clinical Trial → Pharma Knowledge → Medical Device。</p>
+              </div>
+            </div>
+            <div class="quote">验收：15 分钟、不看资料，讲清楚“一个软件工程师为什么能够进入 Health，而且有哪些职业出口？”</div>
+          </section>
+
+          <section class="week" id="weeks-3-4">
+            <h3>第 3-4 周：补最小 Health 基础</h3>
+            <div class="goal">这两周不是学医学，而是学医疗系统语言。</div>
+            <p>重点词：EHR/EMR、HIS、LIS、PACS、DICOM、FHIR、HL7、ICD、SNOMED CT、LOINC、Clinical Workflow、Evidence-Based Medicine。</p>
+            <div class="grid-2">
+              <div class="panel">
+                <h3>每日节奏</h3>
+                <p>60 分钟领域 + 60 分钟代码。不要超过太多，防止再次进入“高压冲刺—耗竭—停摆”。</p>
+              </div>
+              <div class="panel">
+                <h3>第 4 周产物</h3>
+                <p>《Software Engineer 的 Health Informatics 速查手册 v0.1》，控制在 15-30 页。</p>
+              </div>
+            </div>
+            <ul class="checklist">
+              <li>它是什么？</li>
+              <li>医院为什么需要？</li>
+              <li>软件工程师在哪里参与？</li>
+              <li>AI 在哪里真正有用？</li>
+            </ul>
+            <div class="quote">验收：随机抽 10 个词，至少 8 个能定义 + 举例 + 说出软件关系。</div>
+          </section>
+
+          <section class="week" id="weeks-5-6">
+            <h3>第 5-6 周：第一个真正的 Health 作品</h3>
+            <div class="goal">开始做 Medical Evidence Assistant v0.1。</div>
+            <ul class="flow">
+              <li>问题</li>
+              <li>医学文献/指南数据</li>
+              <li>切分/索引</li>
+              <li>RAG</li>
+              <li>引用原文</li>
+              <li>答案</li>
+              <li>Evidence level / source</li>
+            </ul>
+            <div class="grid-2">
+              <div class="panel">
+                <h3>不要做</h3>
+                <p>“AI 帮你诊断疾病”。</p>
+              </div>
+              <div class="panel">
+                <h3>要做</h3>
+                <p>医学知识检索和证据整理工具。</p>
+              </div>
+            </div>
+            <p>你的优势是工程，因此至少做完整：前端、API、数据库、RAG、引用、日志、错误处理。第 6 周必须上线一个可以让别人操作的版本。</p>
+            <ul class="checklist">
+              <li>一个陌生人输入问题后，能得到回答。</li>
+              <li>能看到来源。</li>
+              <li>能看到引用。</li>
+              <li>找不到证据时明确说不知道。</li>
+              <li>系统不会因为一个错误输入直接崩。</li>
+            </ul>
+          </section>
+
+          <section class="week" id="week-7">
+            <h3>第 7 周：工程化</h3>
+            <div class="goal">不要马上再做第二个 Agent，把第一个东西变得像软件。</div>
+            <div class="grid-3">
+              <div class="metric"><strong>质量</strong>测试、失败样例、错误边界。</div>
+              <div class="metric"><strong>可观测</strong>日志、延迟统计、成本统计。</div>
+              <div class="metric"><strong>可演进</strong>evaluation、prompt/version 管理、安全边界。</div>
+            </div>
+            <p>画出 System Architecture Diagram。README 必须解释 Problem → Users → Architecture → Data → RAG → Evaluation → Limitations。</p>
+            <div class="quote">验收：把 GitHub 发给一个完全没参与项目的人；如果他 20 分钟内能理解你解决了什么问题、系统怎么工作、还有什么缺陷，通过。</div>
+          </section>
+
+          <section class="week" id="week-8">
+            <h3>第 8 周：行业现实校验</h3>
+            <div class="goal">停止自学一周的扩张，找真实人谈。</div>
+            <p>目标 6 人即可，最好覆盖医疗 IT 工程师、医院信息科、Health AI、药企数字化、研究院/高校、医疗产品经理。</p>
+            <ul class="checklist">
+              <li>你们真正缺什么工程能力？</li>
+              <li>医疗 AI 现在最难落地的地方是什么？</li>
+              <li>软件工程背景的人最容易从哪个岗位进入？</li>
+              <li>你最不建议新人做什么？</li>
+            </ul>
+            <div class="quote">验收：六次交流后写一页《我原来的 5 个错误假设》。</div>
+          </section>
+
+          <section class="week" id="week-9">
+            <h3>第 9 周：济南现实验证</h3>
+            <div class="goal">专门研究：山大 → Health 研究 → 医院 → 企业。</div>
+            <p>不要抽象想“济南有没有未来”。建立自己的单位地图：山东大学软件学院、健康医疗大数据研究相关平台、医院、公共卫生、药学院、医疗 IT、药企数字化、HealthTech。</p>
+            <pre><code>山大
+ ├─ Software
+ ├─ Health Data
+ ├─ Hospital
+ ├─ Pharma
+ └─ Industry</code></pre>
+            <div class="quote">验收：至少找到 20 个单位/团队/导师/岗位样本，并且每个分支至少有 3 个现实对象。</div>
+          </section>
+
+          <section class="week" id="week-10">
+            <h3>第 10 周：亦庄/京沪去魅化验证</h3>
+            <div class="goal">不是重新决定是否回北京，而是建立交易规则。</div>
+            <p>研究 20 个真正值得迁移的职位，只看 Health AI、Pharma AI、Medical Knowledge、Life Science Data、Medical Device Software。</p>
+            <div class="grid-2">
+              <div class="panel">
+                <h3>进入门槛</h3>
+                <ul>
+                  <li>薪资涨幅不足 30%：不迁。</li>
+                  <li>只是普通 Web：不迁。</li>
+                  <li>没有 Health 核心数据/产品：不迁。</li>
+                  <li>无法获得明显行业跃迁：不迁。</li>
+                </ul>
+              </div>
+              <div class="panel">
+                <h3>退出条件</h3>
+                <ul>
+                  <li>睡眠持续恶化。</li>
+                  <li>长期通勤超过阈值。</li>
+                  <li>伴侣/家庭不可持续。</li>
+                  <li>两年没有形成领域资产。</li>
+                  <li>岗位退化成普通外包开发。</li>
+                </ul>
+              </div>
+            </div>
+            <div class="quote">验收：看到一个北京职位时，能在 5 分钟内判断去 / 不去 / 需要补充信息。</div>
+          </section>
+
+          <section class="week" id="week-11">
+            <h3>第 11 周：形成个人职业资产包</h3>
+            <div class="goal">目标不是写“正在转型医疗 AI”，而是展示 Software Engineer specializing in AI-enabled Health Knowledge Systems。</div>
+            <div class="grid-3">
+              <div class="metric"><strong>项目资产</strong>GitHub 项目、项目 Demo、系统架构。</div>
+              <div class="metric"><strong>知识资产</strong>Health Informatics 笔记、行业地图、技术文章 1 篇。</div>
+              <div class="metric"><strong>求职资产</strong>简历新版本，重新解释 Software Engineering → AI/Data → Health。</div>
+            </div>
+            <div class="quote">验收：给一个招聘者 5 分钟，他能看出你以前是软件工程师，正在 Health 方向建立真实能力，已经有可运行项目。</div>
+          </section>
+
+          <section class="week" id="week-12">
+            <h3>第 12 周：决策周</h3>
+            <div class="goal">最后一周不学习新内容，只做一次 12 周 Operating Review。</div>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>维度</th>
+                    <th>问题</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>兴趣</td>
+                    <td>做 Health 项目时有没有持续好奇心？</td>
+                  </tr>
+                  <tr>
+                    <td>能力</td>
+                    <td>是否明显利用到了原软件工程优势？</td>
+                  </tr>
+                  <tr>
+                    <td>市场</td>
+                    <td>是否找到真实岗位/单位？</td>
+                  </tr>
+                  <tr>
+                    <td>生活</td>
+                    <td>这条路线是否允许我要的家庭与健康？</td>
+                  </tr>
+                  <tr>
+                    <td>可逆</td>
+                    <td>如果 Health 失败，能否退回 Software/Data/AI？</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="score">
+              <div class="rule"><strong>40+</strong>继续投入一年。</div>
+              <div class="rule"><strong>32-39</strong>继续，但调整方向。</div>
+              <div class="rule"><strong>24-31</strong>保留副线，不重押。</div>
+              <div class="rule"><strong>&lt;24</strong>停止浪漫化 Health，重新评估。</div>
+            </div>
+          </section>
+
+          <section class="section" id="metrics">
+            <div class="section-head">
+              <h2>每周只追踪 4 个数字</h2>
+              <span class="badge">防止计划变成压力源</span>
+            </div>
+            <div class="grid-2">
+              <div class="metric"><strong>深度工作小时数</strong>建议每周 8-12 小时深度学习/项目。</div>
+              <div class="metric"><strong>运动次数</strong>建议每周 3 次运动。</div>
+              <div class="metric"><strong>作品提交次数</strong>建议每周 5 次以上有效 Git 提交。</div>
+              <div class="metric"><strong>真实行业交流次数</strong>建议平均每 2 周 1 次行业交流。</div>
+            </div>
+            <div class="panel">
+              <h3>核心原则</h3>
+              <p>12 周结束时，不要求你变成 Healthcare AI 专家；要求你从“想象中的职业路线”，进入“有作品、有行业反馈、有城市边界、有下一步证据”的状态。</p>
+              <p>这样即使最终发现 Health 不是长期方向，这 12 周也不会浪费：Python、Data、RAG、软件架构、行业研究、作品表达仍然全部可迁移；而如果验证成功，接下来一年就可以很自然地进入山大软件/Health 实践 + 济南筑底 + 亦庄作为高阶期权。</p>
+            </div>
+          </section>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>
