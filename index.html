@@ -342,13 +342,14 @@
               <h2>healthcare 出口服务台</h2>
               <p>把医疗信息、AI 工程、产品交付和增长运营整合为统一出口，面向 healthcare 场景提供从知识库到应用落地的服务入口。</p>
             </div>
-            <span class="doc-count">6 个入口 · 60+ 交付资产</span>
+            <span class="doc-count">7 个入口 · 60+ 交付资产</span>
           </div>
           <div class="notes-browser">
             <div class="notes-tabs" role="tablist" aria-label="healthcare 出口服务导航">
               <button class="notes-tab active" type="button" data-notes-filter="all" role="tab" aria-selected="true">服务总览<span>统一入口 / 全部资产</span></button>
               <button class="notes-tab" type="button" data-notes-filter="guide" role="tab" aria-selected="false">参考指南<span>风险指南 / 决策框架</span></button>
               <button class="notes-tab" type="button" data-notes-filter="integration" role="tab" aria-selected="false">整合项目<span>Life / Care Coach</span></button>
+              <button class="notes-tab" type="button" data-notes-filter="language" role="tab" aria-selected="false">语言支持<span>跨文化 / 患者教育</span></button>
               <button class="notes-tab" type="button" data-notes-filter="knowledge" role="tab" aria-selected="false">医疗知识库<span>信息整理 / 技术底座</span></button>
               <button class="notes-tab" type="button" data-notes-filter="service" role="tab" aria-selected="false">AI 交付服务<span>产品 / 工程 / 上线</span></button>
               <button class="notes-tab" type="button" data-notes-filter="ops" role="tab" aria-selected="false">增长运营服务<span>内容 / SEO / 商业化</span></button>
@@ -551,6 +552,10 @@
               <strong>整合项目 · AI Care Coach</strong>
               <span>医学、心理、艺术与身心疗愈整合展示页，作为护理与身心支持侧翼。</span>
             </a>
+            <a class="note-link" href="integrated-projects/ai-language-coach.html" data-doc="integrated-projects/ai-language-coach.html" data-view="html">
+              <strong>语言支持应用 · AI Language Coach</strong>
+              <span>面向 healthcare 跨文化沟通、患者教育和医学资料阅读的语言练习系统。</span>
+            </a>
             <a class="note-link" href="medical-info-engineering/week-01.md" data-doc="medical-info-engineering/week-01.md">
               <strong>医疗知识库 · 第 1 周</strong>
               <span>建立医药信息产品认知、GitHub 仓库、Vercel 部署和项目入口。</span>
@@ -656,6 +661,9 @@
       const readerClose = document.querySelector("#reader-close");
 
       const getNoteCategory = (path) => {
+        if (path === "integrated-projects/ai-language-coach.html") {
+          return "language";
+        }
         if (path.startsWith("integrated-projects/")) {
           return "integration";
         }

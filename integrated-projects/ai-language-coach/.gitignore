@@ -1,0 +1,10 @@
+.vercel
+.env*
+!.env.example
+node_modules
+frontend/node_modules
+.next
+frontend/.next
+__pycache__
+*.pyc
+.DS_Store
