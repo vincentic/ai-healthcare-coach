@@ -332,12 +332,37 @@
         gap: 10px;
       }
 
+      .risk-level {
+        color: var(--red);
+        font-weight: 900;
+      }
+
+      .warning {
+        border-left: 4px solid var(--red);
+        background: #fff1f0;
+        color: #6d302d;
+        font-weight: 900;
+        line-height: 1.7;
+        padding: 12px 14px;
+      }
+
+      .compact-list {
+        display: grid;
+        gap: 8px;
+        margin: 0;
+        padding-left: 18px;
+      }
+
       .score .rule:nth-child(1) {
         border-color: rgba(32, 116, 94, 0.35);
       }
 
       .score .rule:nth-child(4) {
         border-color: rgba(163, 73, 69, 0.32);
+      }
+
+      .panel .score {
+        grid-template-columns: 1fr;
       }
 
       code {
@@ -411,6 +436,7 @@
         </div>
         <nav class="nav" aria-label="参考文档导航">
           <a href="#acceptance">总验收</a>
+          <a href="#risk-guide">风险指南</a>
           <a href="#weeks-1-2">第 1-2 周</a>
           <a href="#weeks-3-4">第 3-4 周</a>
           <a href="#weeks-5-6">第 5-6 周</a>
@@ -474,6 +500,199 @@
                 </tbody>
               </table>
             </div>
+          </section>
+
+          <section class="section" id="risk-guide">
+            <div class="section-head">
+              <h2>风险指南：防止系统计划延迟真实验证</h2>
+              <span class="badge">参考指南 / Red Flags</span>
+            </div>
+            <div class="panel">
+              <p>如果只看这套 12 周 Software → AI/Data → Health 验证 + 济南/亦庄/京沪城市去魅方案，最大的风险并不是“12 周学不会”，而是用一个看起来非常系统的新计划，继续延迟真正的职业验证。</p>
+              <div class="warning">最高风险：12 周非常努力，学了很多、画了很多地图、做了 Demo，最后仍然不知道市场愿不愿意为你的新能力付钱，你自己愿不愿意长期做 Health。</div>
+            </div>
+
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>排名</th>
+                    <th>风险</th>
+                    <th>概率</th>
+                    <th>损失</th>
+                    <th>危险等级</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>1</td>
+                    <td>学习/规划替代真实市场验证</td>
+                    <td>高</td>
+                    <td>极高</td>
+                    <td><span class="risk-level">10</span></td>
+                  </tr>
+                  <tr>
+                    <td>2</td>
+                    <td>同时扩张太多领域，主线失焦</td>
+                    <td>很高</td>
+                    <td>高</td>
+                    <td><span class="risk-level">9.5</span></td>
+                  </tr>
+                  <tr>
+                    <td>3</td>
+                    <td>浪漫化 Health，实际不喜欢医疗产业</td>
+                    <td>中高</td>
+                    <td>极高</td>
+                    <td><span class="risk-level">9</span></td>
+                  </tr>
+                  <tr>
+                    <td>4</td>
+                    <td>做出“玩具 RAG”，误判自己已有 Health 竞争力</td>
+                    <td>高</td>
+                    <td>高</td>
+                    <td><span class="risk-level">9</span></td>
+                  </tr>
+                  <tr>
+                    <td>5</td>
+                    <td>把山大/亦庄/济南再次变成新的执念</td>
+                    <td>中高</td>
+                    <td>高</td>
+                    <td>8.5</td>
+                  </tr>
+                  <tr>
+                    <td>6</td>
+                    <td>为转型主动清零原有软件工程资产</td>
+                    <td>中</td>
+                    <td>极高</td>
+                    <td>8.5</td>
+                  </tr>
+                  <tr>
+                    <td>7</td>
+                    <td>12 周再次高压执行 → 耗竭 → 中断</td>
+                    <td>中高</td>
+                    <td>高</td>
+                    <td>8</td>
+                  </tr>
+                  <tr>
+                    <td>8</td>
+                    <td>只有个人作品，没有真实医疗数据/工作流</td>
+                    <td>高</td>
+                    <td>中高</td>
+                    <td>8</td>
+                  </tr>
+                  <tr>
+                    <td>9</td>
+                    <td>把“行业交流”变成信息收集而非机会形成</td>
+                    <td>高</td>
+                    <td>中</td>
+                    <td>7</td>
+                  </tr>
+                  <tr>
+                    <td>10</td>
+                    <td>12 周后仍继续研究，不做 Go/No-Go 决定</td>
+                    <td>中高</td>
+                    <td>高</td>
+                    <td><span class="risk-level">9</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="grid-2">
+              <div class="panel">
+                <h3>1. 不把“学习”误认为“转型”</h3>
+                <p>12 周后如果只是课程完成、FHIR 知道了、RAG 做出来了、行业地图很好、GitHub 漂亮，市场仍可能只把你看成有 Health 兴趣的软件工程师。</p>
+                <ul class="compact-list">
+                  <li>有真实 Health 从业者愿意继续合作。</li>
+                  <li>有导师愿意让你参与 Health 项目。</li>
+                  <li>有相关岗位愿意面试你。</li>
+                  <li>有团队认为你的工程能力能解决问题。</li>
+                  <li>有真实用户愿意使用你的工具。</li>
+                </ul>
+                <div class="quote">没有任何外部反馈，12 周只能算学习成功，不能算职业验证成功。</div>
+              </div>
+              <div class="panel">
+                <h3>2. 主线只允许一条</h3>
+                <p>Health 一打开，会自然连接医学信息学、医疗 AI、药企、Aging、神经科学、Bioinformatics、AI Drug Discovery、医疗器械、心理健康、康复等兴趣。</p>
+                <div class="goal">主线：Medical Knowledge / Health Informatics。</div>
+                <p>Bioinformatics、脑机接口、合成生物、心理疗愈、康复全部放入 Later List。不是否定，是暂时不做。</p>
+              </div>
+            </div>
+
+            <div class="grid-2">
+              <div class="panel">
+                <h3>3. 防止浪漫化 Health</h3>
+                <p>Health 的意义宏大，日常工作仍可能非常琐碎：数据清洗、医院接口、权限系统、招投标、合规、遗留系统、医生没时间配合、数据质量差、客户需求反复、药企内部系统、Excel。</p>
+                <div class="quote">第 8 周访谈重点问：“你工作里最烦的 30% 是什么？”如果最差、最无聊的 30% 仍然能接受，Health 才值得押注。</div>
+              </div>
+              <div class="panel">
+                <h3>4. 防止玩具 RAG 成就感</h3>
+                <p>PDF → chunk → embedding → vector DB → LLM → citation 并不特别难。真正的 Health 壁垒在来源权威性、Evidence hierarchy、医学术语、信息时效、冲突证据、患者差异、hallucination、evaluation、clinical workflow、privacy / regulatory / safety。</p>
+                <div class="quote">v0.1 真正要测：系统什么时候知道自己不知道？这比回答得漂亮重要。</div>
+              </div>
+            </div>
+
+            <div class="grid-2">
+              <div class="panel">
+                <h3>5. 城市只是 Option，不是剧本</h3>
+                <p>不要把未来 20 年写成济南 → 亦庄 → 济南。35 岁时，伴侣、父母身体、行业变化、公司机会、孩子、住房、身体、AI 产业都会改变答案。</p>
+                <ul class="compact-list">
+                  <li>未来 2-3 年默认济南。</li>
+                  <li>亦庄满足 X 条件则开启。</li>
+                  <li>上海满足 Y 条件则开启。</li>
+                </ul>
+              </div>
+              <div class="panel">
+                <h3>6. 不要为了 Health 重新做人</h3>
+                <p>正确路线是已有 Software 经验 + Backend/Data + AI + Health Domain，而不是清零 Frontend、从零医学、变成 Health AI 新人。</p>
+                <div class="goal">每周技术时间至少一半仍然强化 Python / Backend / SQL / Architecture / Testing / Data Engineering。</div>
+              </div>
+            </div>
+
+            <div class="grid-2">
+              <div class="panel">
+                <h3>7. 防止复制高压执行模式</h3>
+                <p>宏大目标 → 高强度执行 → 每天检查进度 → 落后焦虑 → 增加投入 → 睡眠/运动下降 → 耗竭 → 中断 → 自我否定。这个循环必须被打断。</p>
+                <div class="quote">新增验收：12 周结束以后，你是否还有余力继续？如果“终于结束了，再也不想看 Health”，计划失败；如果“节奏正常，还能再做 12 周”，才真正通过。</div>
+              </div>
+              <div class="panel">
+                <h3>8. 一定要取得真实场景</h3>
+                <p>个人项目拥有完整控制权，真实医院不是。第 8-12 周要努力取得一个真实小问题：医疗文献整理、科研文献管理、医学知识库、患者教育内容、医院数据可视化、科研团队内部工具。</p>
+                <div class="quote">一个真实的小问题，比第二个漂亮 Demo 重要得多。</div>
+              </div>
+            </div>
+
+            <div class="grid-2">
+              <div class="panel">
+                <h3>9. 访谈要形成机会</h3>
+                <p>交流不只是获得更多信息。更好的进展是：第一个人告诉你行业；第三个人愿意看 Demo；第六个人说“我们确实有一个问题，你要不要试试？”</p>
+                <div class="goal">第 8 周之后，指标从认识多少人变成产生多少个第二次交流。</div>
+              </div>
+              <div class="panel">
+                <h3>10. Week 12 必须决策</h3>
+                <p>最大逃生门是“Health 很复杂，我再研究 12 周”。第 12 周必须强制进入 GO / PIVOT / STOP 之一。</p>
+                <div class="score">
+                  <div class="rule"><strong>GO</strong>Health 明显值得，未来一年投入。</div>
+                  <div class="rule"><strong>PIVOT</strong>Health 喜欢，但 Medical Knowledge 不适合，切到 Healthcare Software / Digital Health / Pharma IT。</div>
+                  <div class="rule"><strong>STOP</strong>不喜欢 Health 真实日常，回到 Software / AI / Knowledge Engineering。</div>
+                  <div class="rule"><strong>失败项</strong>“还不知道，再研究。”</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="panel">
+              <h3>修改后的 12 周成功公式</h3>
+              <div class="axis">作品证据 × 外部反馈 × 可持续性 × 决策清晰度</div>
+              <p>其中任何一个接近 0，总体价值都会大幅下降。没有外部反馈，不算职业验证；健康崩掉，不算可持续路线；12 周以后仍无法舍弃方向，不算决策完成。</p>
+            </div>
+
+            <div class="grid-3">
+              <div class="metric"><strong>红灯 1</strong>连续两周学习 &gt; 项目，说明又进入知识囤积。</div>
+              <div class="metric"><strong>红灯 2</strong>连续两周睡眠、运动明显恶化，说明又复制高压人生模式。</div>
+              <div class="metric"><strong>红灯 3</strong>第 8 周还没有任何真实从业者看过作品，说明仍然活在模拟世界。</div>
+            </div>
+            <div class="warning">如果三个红灯里有两个同时亮：不要加码，立即缩范围。</div>
+            <div class="quote">最终验证的问题：能不能在不牺牲健康、不清零已有职业资产、不把城市重新神圣化的前提下，把 Software 能力向 Health 推进一小步，并获得现实世界的正反馈？如果答案是 Yes，这条路才值得走下一年。</div>
           </section>
 
           <section class="week" id="weeks-1-2">
