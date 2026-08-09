@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Health Informatics 国内城市生态指南</title>
+    <style>
+      :root {
+        color-scheme: light;
+        font-family: Inter, "Segoe UI", Arial, sans-serif;
+        --bg: #f5f8f7;
+        --surface: #ffffff;
+        --soft: #edf5f2;
+        --soft-blue: #eef5fb;
+        --text: #172033;
+        --muted: #5f6f7c;
+        --line: #d6e2de;
+        --green: #20745e;
+        --blue: #176f93;
+        --gold: #8b6824;
+        --red: #a34945;
+        --ink: #24384f;
+        --shadow: rgba(30, 52, 60, 0.09);
+      }
+
+      * { box-sizing: border-box; }
+      body { margin: 0; background: var(--bg); color: var(--text); }
+      a { color: inherit; text-decoration: none; }
+      h1, h2, h3, p { margin-top: 0; }
+      p, li, td { color: var(--muted); line-height: 1.75; }
+      .layout { display: grid; grid-template-columns: 280px minmax(0, 1fr); min-height: 100vh; }
+      .rail {
+        position: sticky;
+        top: 0;
+        height: 100vh;
+        overflow: auto;
+        border-right: 1px solid var(--line);
+        background: #fbfdfc;
+        padding: 20px;
+      }
+      .brand { display: grid; gap: 10px; margin-bottom: 22px; }
+      .brand a { color: var(--blue); font-size: 0.9rem; font-weight: 900; }
+      .brand h1 { margin: 0; font-size: 1.2rem; line-height: 1.3; }
+      .brand p { margin: 0; font-size: 0.92rem; }
+      .nav { display: grid; gap: 8px; }
+      .nav a {
+        border: 1px solid transparent;
+        border-radius: 8px;
+        color: var(--ink);
+        font-size: 0.92rem;
+        font-weight: 800;
+        padding: 10px 11px;
+      }
+      .nav a:hover, .nav a:focus-visible { border-color: var(--line); background: var(--soft); outline: none; }
+      main { min-width: 0; padding: 24px; }
+      .workspace { max-width: 1180px; margin: 0 auto; display: grid; gap: 20px; }
+      .hero, .panel, .city, .metric, .path-card {
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--surface);
+        box-shadow: 0 12px 28px var(--shadow);
+      }
+      .hero { display: grid; gap: 18px; padding: 24px; }
+      .eyebrow {
+        color: var(--green);
+        font-size: 0.82rem;
+        font-weight: 900;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+      .hero h2 { margin: 0; font-size: clamp(2rem, 4vw, 3.45rem); line-height: 1.14; }
+      .lead { max-width: 900px; margin: 0; color: var(--muted); font-size: 1.05rem; line-height: 1.85; }
+      .axis {
+        border-left: 4px solid var(--green);
+        background: #eff8f4;
+        color: #264b3d;
+        font-size: 1.02rem;
+        font-weight: 900;
+        line-height: 1.7;
+        padding: 13px 15px;
+      }
+      .section { display: grid; gap: 12px; }
+      .section-head { display: flex; align-items: end; justify-content: space-between; gap: 16px; }
+      .section-head h2 { margin: 0; font-size: 1.28rem; }
+      .badge {
+        flex: 0 0 auto;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        background: #fff;
+        color: var(--ink);
+        font-size: 0.82rem;
+        font-weight: 900;
+        padding: 7px 10px;
+      }
+      .panel, .city, .metric, .path-card { padding: 18px; }
+      .grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+      .grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+      .table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 8px; background: #fff; }
+      table { width: 100%; min-width: 760px; border-collapse: collapse; }
+      th, td { border-bottom: 1px solid var(--line); padding: 12px 13px; text-align: left; vertical-align: top; }
+      th { color: var(--ink); background: var(--soft); font-size: 0.88rem; font-weight: 900; }
+      tr:last-child td { border-bottom: 0; }
+      .city { display: grid; gap: 12px; }
+      .city h3 { margin: 0; color: var(--ink); font-size: 1.14rem; }
+      .city .score { color: var(--green); font-weight: 900; }
+      .quote {
+        border-left: 4px solid var(--gold);
+        background: #fff8e8;
+        color: #59451f;
+        font-weight: 900;
+        line-height: 1.7;
+        padding: 12px 14px;
+      }
+      .checklist { display: grid; gap: 8px; margin: 0; padding: 0; list-style: none; }
+      .checklist li { border-left: 3px solid var(--green); background: #f6fbf8; padding: 8px 10px; }
+      .metric strong, .path-card strong { display: block; margin-bottom: 6px; color: var(--ink); }
+      pre {
+        overflow: auto;
+        border-radius: 8px;
+        background: #142033;
+        color: #eff6ff;
+        line-height: 1.65;
+        padding: 14px;
+      }
+      .sources a { color: var(--blue); text-decoration: underline; text-underline-offset: 3px; }
+      @media (max-width: 920px) {
+        .layout { grid-template-columns: 1fr; }
+        .rail { position: static; height: auto; border-right: 0; border-bottom: 1px solid var(--line); }
+        .nav { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        .grid-2, .grid-3 { grid-template-columns: 1fr; }
+      }
+      @media (max-width: 620px) {
+        main, .rail { padding: 16px; }
+        .nav { grid-template-columns: 1fr; }
+        .hero, .panel, .city, .metric, .path-card { padding: 16px; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="layout">
+      <aside class="rail">
+        <div class="brand">
+          <a href="../index.html#notes">返回服务总览</a>
+          <h1>Health Informatics 国内城市生态指南</h1>
+          <p>把城市选择还原成专业分支、能力梯子和生活可持续性的函数。</p>
+        </div>
+        <nav class="nav" aria-label="城市生态指南导航">
+          <a href="#overview">综合结论</a>
+          <a href="#jinan">济南</a>
+          <a href="#beijing">北京/亦庄</a>
+          <a href="#shanghai">上海</a>
+          <a href="#suzhou">苏州</a>
+          <a href="#nanjing">南京</a>
+          <a href="#more-cities">其他城市</a>
+          <a href="#talents">五类人才</a>
+          <a href="#path">城市路径</a>
+          <a href="#sources">参考来源</a>
+        </nav>
+      </aside>
+
+      <main>
+        <div class="workspace">
+          <section class="hero">
+            <span class="eyebrow">Health Informatics / City Ecology</span>
+            <h2>国内城市不是排名题，而是进入梯子的选择题</h2>
+            <p class="lead">如果把 Health Informatics 当成主领域，而不是一个狭窄专业，国内城市可以分成四种生态：医院数据型、医药研发型、MedTech 型、AI 平台型。对你而言，最重要的不是城市“医疗总实力”，而是它有没有一条允许软件工程师进入并逐步升级的梯子。</p>
+            <div class="axis">Software → Data/Knowledge → Health Informatics → 医疗 AI/医药数字化 → Architect</div>
+          </section>
+
+          <section class="section" id="overview">
+            <div class="section-head">
+              <h2>一、综合结论</h2>
+              <span class="badge">个人适配优先</span>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>城市</th>
+                    <th>Health Informatics 生态</th>
+                    <th>最强出口</th>
+                    <th>技术天花板</th>
+                    <th>生活可持续</th>
+                    <th>个人适配</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td>济南</td><td>医疗大数据/医院信息化</td><td>Health Data、Clinical Informatics</td><td>8</td><td>9.5</td><td>9.5</td></tr>
+                  <tr><td>南京</td><td>医院+高校+药企+器械</td><td>Medical Knowledge、Pharma IT</td><td>8.8</td><td>9</td><td>9.1</td></tr>
+                  <tr><td>苏州</td><td>Pharma/MedTech</td><td>Pharma Informatics、MedTech</td><td>9.3</td><td>8.8</td><td>9.1</td></tr>
+                  <tr><td>北京/亦庄</td><td>AI+医疗+创新药</td><td>Medical AI、Pharma AI</td><td>10</td><td>6.5</td><td>8.1 长期 / 9.2 阶段性</td></tr>
+                  <tr><td>上海</td><td>国际医药+医疗 AI</td><td>Clinical/RWE/Pharma Informatics</td><td>10</td><td>6</td><td>7.5 长期 / 9.0 阶段性</td></tr>
+                  <tr><td>广州</td><td>临床+医学数据</td><td>Clinical Informatics、Health Data</td><td>9</td><td>8</td><td>8.6</td></tr>
+                  <tr><td>武汉</td><td>医院+高校+科研</td><td>Biomedical Data、Research Informatics</td><td>9</td><td>8.3</td><td>8.5</td></tr>
+                  <tr><td>杭州</td><td>AI+数字健康+医疗 IT</td><td>Healthcare AI/Product/Data</td><td>9.2</td><td>7.3</td><td>8.3</td></tr>
+                  <tr><td>深圳</td><td>MedTech+硬件+AI</td><td>Medical Device Software</td><td>9.7</td><td>6.8</td><td>7.8</td></tr>
+                  <tr><td>成都</td><td>医工协同+AI 医疗</td><td>Digital Health、Clinical AI</td><td>8.5</td><td>9</td><td>8.3</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section class="city" id="jinan">
+            <h3>二、济南：Health Informatics 的基本盘</h3>
+            <p>济南最有特色的不是一般意义上的“生物医药”，而是健康医疗大数据基础设施。国家健康医疗大数据北方中心、区域医学影像云、医疗健康数据实训基地、数字医疗产业集群，使济南很适合做 Health Data、Clinical Informatics 和 Medical Knowledge 的长期底座。</p>
+            <div class="grid-2">
+              <div class="panel">
+                <h3>典型岗位</h3>
+                <ul class="checklist">
+                  <li>医疗数据工程师 / 数据治理工程师 / Clinical Data Engineer</li>
+                  <li>医疗知识工程师 / 医院信息化研发 / 医疗 AI 应用工程师</li>
+                  <li>科研平台工程师 / 医疗数据产品经理 / Health Informatics Engineer</li>
+                </ul>
+              </div>
+              <div class="panel">
+                <h3>人才画像</h3>
+                <p>工程能力不错 + 愿意理解医疗业务 + 数据治理能力强 + 能长期做行业系统的人。</p>
+                <p>核心技能：Python/Java + SQL + ETL + 数据库 + 数据建模 + 医疗流程 + 数据安全 + 医疗术语/标准。</p>
+              </div>
+            </div>
+            <div class="quote">适配度 9.5/10。最大风险是长期停留在外围信息化/数据搬运，而没有升级到 Data Governance → Knowledge → AI → Architecture。</div>
+          </section>
+
+          <section class="city" id="beijing">
+            <h3>三、北京/亦庄：Health Informatics 的天花板城市</h3>
+            <p>北京更接近 Health Informatics + Foundation Model + Pharma + Research。亦庄的产业布局覆盖生物医药与大健康、AI 和创新药，适合作为 35-42 岁的阶段性产业冲刺城市。</p>
+            <div class="grid-2">
+              <div class="panel">
+                <h3>工程应用型</h3>
+                <p>Python/Java、SQL/Data、Backend、RAG/Agent、Evaluation、Health Domain。这是软件背景可以争取的路线。</p>
+              </div>
+              <div class="panel">
+                <h3>研究型</h3>
+                <p>ML/LLM、强数学、模型训练、博士/论文。这一层竞争非常激烈，不应现在硬撞。</p>
+              </div>
+            </div>
+            <div class="quote">最优用法不是再次回北京证明自己，而是济南做到 Health Engineer → 北京出现真正 Medical AI/Pharma AI 跃迁岗位 → 去 3-7 年。</div>
+          </section>
+
+          <section class="city" id="shanghai">
+            <h3>四、上海：完整的高级 Health Informatics 环境</h3>
+            <p>上海同时具备医学 AI MaaS、医疗多模态数据集、医学知识库、医疗智能体、卫生健康数据平台、真实世界研究、创新药械和研究型医院。它非常适合 Medical Knowledge Engineering → Clinical Trial / RWE → Pharma Informatics。</p>
+            <pre><code>医院
+ ↓
+Clinical Data
+ ↓
+Research
+ ↓
+AI
+ ↓
+Pharma
+ ↓
+RWE / Clinical Trial
+ ↓
+International Pharma</code></pre>
+            <div class="quote">职业适配 9.5，长期生活 6-7，阶段使用 9。不要把“留下上海”设成人生 KPI，但真正的 Pharma/Health Informatics 跨国项目仍然值得使用。</div>
+          </section>
+
+          <section class="city" id="suzhou">
+            <h3>五、苏州：隐藏冠军</h3>
+            <p>苏州适合的不是传统医院 HIS，而是 Pharma Informatics + Medical Device Informatics：临床试验数据、研发数据平台、药物知识系统、生产数字化、质量系统、Medical Device Software、RWE、Regulatory Data。</p>
+            <div class="grid-2">
+              <div class="panel">
+                <h3>人才画像</h3>
+                <p>工程师 + 产业理解。SQL、Python/Java、Data Platform、Cloud、System Integration，再加 GxP、Clinical Trial、药物研发流程、器械法规/质量。</p>
+              </div>
+              <div class="panel">
+                <h3>适合情境</h3>
+                <p>如果你喜欢 Health，但不喜欢医院信息系统，也不想再承担北京上海的生活压力，苏州是优先选项。</p>
+              </div>
+            </div>
+            <div class="quote">苏州可能是“亦庄产业强度 × 南京生活感”之间最好的折中之一。</div>
+          </section>
+
+          <section class="city" id="nanjing">
+            <h3>六、南京：Human-Centered Health 路线</h3>
+            <p>南京同时容纳医疗信息、Pharma、Medical Device、大学科研和医学教育。它不像北京那么强调算法极限，更适合技术 + 医学理解 + 产品 + 沟通，也能兼容教育、心理、人文、产品兴趣。</p>
+            <ul class="checklist">
+              <li>Medical Knowledge Engineer</li>
+              <li>Healthcare Product Engineer</li>
+              <li>Pharma Data/Knowledge</li>
+              <li>Medical Device Software</li>
+              <li>Clinical Research Platform</li>
+              <li>Medical Education Technology</li>
+            </ul>
+            <div class="quote">如果济南是根，亦庄是冲顶，那么南京很可能是可以真的生活 20 年的 Health 城市。</div>
+          </section>
+
+          <section class="section" id="more-cities">
+            <div class="section-head">
+              <h2>七、其他专业分叉城市</h2>
+              <span class="badge">按专业函数选择</span>
+            </div>
+            <div class="grid-2">
+              <div class="metric"><strong>武汉</strong>Research Informatics 强，适合 Biomedical Data、Clinical Research Informatics、Medical Imaging、Public Health Informatics、科研软件和 AI Research。</div>
+              <div class="metric"><strong>广州</strong>Clinical Informatics 值得重视，适合医院数据治理、区域卫生平台、Clinical AI Product 和公共卫生数据。</div>
+              <div class="metric"><strong>深圳</strong>如果向 Medical Device 走，排名会明显上升，适合 Device Software、影像系统、IoT Health、Wearables、Robot Software。</div>
+              <div class="metric"><strong>杭州</strong>AI-native Digital Health，适合 Healthcare SaaS、Hospital Platform、AI Health Product、Health Data Platform。</div>
+              <div class="metric"><strong>成都</strong>适合 Digital Health、AI Health Application、Hospital Informatics、Medical Imaging，优势是更舒服地结合职业和生活质量。</div>
+            </div>
+          </section>
+
+          <section class="section" id="talents">
+            <div class="section-head">
+              <h2>八、Health Informatics 真正有价值的五类人才</h2>
+              <span class="badge">比城市排名更重要</span>
+            </div>
+            <div class="grid-2">
+              <div class="path-card"><strong>A 型：医疗软件工程师</strong>Java/Python、Backend、SQL、Database、API、HIS/EMR/LIS/PACS。最适合济南、杭州、广州、南京。</div>
+              <div class="path-card"><strong>B 型：医疗数据/知识工程师</strong>SQL、ETL、Data Modeling、Terminology、Ontology、Knowledge Graph、RAG、LLM Evaluation。你的第一主攻画像。</div>
+              <div class="path-card"><strong>C 型：Clinical Informatics</strong>医疗工作流、EHR、Clinical Data、Evidence、Data Governance、安全、Human Factors。越往后越不容易被年轻 Coder 替代。</div>
+              <div class="path-card"><strong>D 型：Medical AI</strong>Python、ML/LLM、RAG/Agent、Evaluation、Medical Data、Safety。争应用工程/评测，不要现在硬撞模型研究。</div>
+              <div class="path-card"><strong>E 型：Pharma Informatics</strong>Medical Knowledge、Clinical Trial、RWE、Regulatory、Data Platform、English、AI。城市顺序大致为上海 > 苏州 ≈ 亦庄 > 南京 > 杭州。</div>
+            </div>
+          </section>
+
+          <section class="section" id="path">
+            <div class="section-head">
+              <h2>九、把城市路径进一步收束</h2>
+              <span class="badge">城市是专业分支的函数</span>
+            </div>
+            <div class="grid-2">
+              <div class="path-card"><strong>第一层 Base：济南</strong>目标是 Software → Health Data / Medical Knowledge，30-35 岁最值得。</div>
+              <div class="path-card"><strong>第二层长期第二故乡：南京 / 苏州</strong>南京是 Health + Knowledge + Humanities + Family，苏州是 Health + Pharma/MedTech + Industry + Family。</div>
+              <div class="path-card"><strong>第三层职业加速器：亦庄 / 上海</strong>只在出现真正 Medical AI / Pharma Informatics / Health Platform 跃迁时使用。</div>
+              <div class="path-card"><strong>第四层专业分叉</strong>武汉 Research/Biomedical Data，深圳 Medical Device，广州 Clinical Informatics，杭州 AI/Digital Health，成都 Health AI + 宜居。</div>
+            </div>
+            <div class="panel">
+              <h3>最简单路线图</h3>
+              <p>30-35：济南，建立 Health Informatics 基础身份，核心画像是 Medical Data / Knowledge Engineer。</p>
+              <p>35 岁后根据已经出现的能力决定城市，而不是反过来：Pharma Informatics → 苏州/上海/亦庄；Clinical Informatics → 济南/广州/上海；Medical AI → 亦庄/杭州/上海；Medical Device → 深圳/苏州/南京；Research Informatics → 武汉/上海/北京。</p>
+              <p>40 岁以后争取 Health Technology / Knowledge Architect。</p>
+            </div>
+            <div class="quote">我尤其看好：济南筑底 → 先成为 Medical Data / Knowledge Engineer → 35 岁再在南京、苏州、亦庄、上海之间根据真实 offer 选择。</div>
+          </section>
+
+          <section class="section sources" id="sources">
+            <div class="section-head">
+              <h2>参考来源</h2>
+              <span class="badge">原始链接保留</span>
+            </div>
+            <div class="panel">
+              <ol>
+                <li><a href="https://www.jinan.gov.cn/col/col117258/art/2026/art_f50d12488a234cb4a95e8f72c6b2a501.html">济南市人民政府：国家健康医疗大数据北方中心相关答复</a></li>
+                <li><a href="https://www.jinan.gov.cn/col57650/art/2026/art_57650_5052069.html">2026 年济南市政府工作报告：济南国际医学中心</a></li>
+                <li><a href="https://www.mhdata.sdu.edu.cn/jrwm.htm">山东大学国家健康医疗大数据研究院：加入我们</a></li>
+                <li><a href="https://hrss.shandong.gov.cn/articles/ch00232/202606/ee63a38a-df51-486e-b3e2-1039e9eee24e.shtml">山东省属事业单位公开招聘服务平台</a></li>
+                <li><a href="https://www.beijing.gov.cn/ywdt/gzdt/202601/t20260105_4401466.html">北京亦庄全球机遇清单</a></li>
+                <li><a href="https://jobs.bytedance.com/experienced/position/7657168126959962373/detail">字节跳动小荷健康：医疗方向大模型评测/数据工程师</a></li>
+                <li><a href="https://www.shanghai.gov.cn/gwk/search/content/08ec4990913742939e264ebfc8420ba8">上海市卫生健康工作要点</a></li>
+                <li><a href="https://sxau.bysjy.com.cn/detail/job?id=2695457">卫宁健康数据工程师职位</a></li>
+                <li><a href="https://www.suzhou.gov.cn/szsrmzf/szyw/202606/fe2499d3c85645c0b1d8406f38173eb2.shtml">苏州市生物医药产业报道</a></li>
+                <li><a href="https://invest.nanjing.gov.cn/gzdt/202606/t20260609_5854561.html">南京生物医药产业集群</a></li>
+                <li><a href="https://www.wuhan.gov.cn/zwgk/xxgk/zfwj/bgtwj/202606/t20260610_2775977.shtml">武汉支持生物医药产业创新发展措施</a></li>
+                <li><a href="https://www.gz.gov.cn/zt/gzlfzgzld/gzld/content/post_10820168.html">广州数据驱动生命健康产业创新</a></li>
+                <li><a href="https://www.sz.gov.cn/cn/xxgk/zfxxgj/zwdt/content/post_12673875.html">深圳医疗器械产业生态</a></li>
+                <li><a href="https://jxj.hangzhou.gov.cn/col/col1229252271/art/2026/art_76463f14867146079495aec11e97e26a.html">杭州生物医药产业高质量发展专项</a></li>
+                <li><a href="https://www.chengdu.gov.cn/cdsrmzf/c174131/2026-03/30/content_3a2df19ee1b1475a9fdcf3bed4cafe4d.shtml">成都医工协同联盟与人工智能+医疗健康创新联盟</a></li>
+              </ol>
+            </div>
+          </section>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>
