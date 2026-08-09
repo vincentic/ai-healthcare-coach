@@ -630,16 +630,16 @@
               <strong>能力建设 · 26 周路线</strong>
               <span>从编程基础、Web 后端到 AI 大模型应用开发的服务能力建设路线。</span>
             </a>
-            <a class="note-link" href="README.md" data-doc="README.md">
-              <strong>README · 项目说明</strong>
-              <span>ai-healthcare-coach 仓库简介与出口服务说明。</span>
+            <a class="note-link" href="project-introduction.md" data-doc="project-introduction.md">
+              <strong>项目介绍</strong>
+              <span>AI Healthcare Coach 的核心模块、功能能力与项目价值。</span>
             </a>
               </nav>
               <article class="reader active" id="reader" aria-live="polite">
             <div class="reader-head">
               <h2 class="reader-title" id="reader-title">服务内容预览</h2>
               <div class="reader-actions">
-                <a id="reader-raw" href="README.md">打开原文</a>
+                <a id="reader-raw" href="project-introduction.md">打开原文</a>
                 <button type="button" id="reader-close">清空预览</button>
               </div>
             </div>
@@ -650,7 +650,7 @@
             </div>
           </div>
           <div class="support-links">
-            <a href="README.md">README</a>
+            <a href="project-introduction.md">项目介绍</a>
             <a href="plan.md">能力路线</a>
           </div>
         </div>
@@ -676,7 +676,7 @@
         if (path === "business-growth/car-robotics.html" || path === "business-growth/industry-research.html") {
           return "delivery";
         }
-        if (path.startsWith("medical-info-engineering/") || path.startsWith("ai-java-learning-practice/") || path === "plan.md" || path === "README.md") {
+        if (path.startsWith("medical-info-engineering/") || path.startsWith("ai-java-learning-practice/") || path === "plan.md" || path === "project-introduction.md") {
           return "knowledge";
         }
         if (path.startsWith("ai-website-building/") || path.startsWith("business-growth/") || path.startsWith("tech-growth/")) {
@@ -695,7 +695,7 @@
       const resetReader = () => {
         noteLinks.forEach((item) => item.classList.remove("active"));
         readerTitle.textContent = "服务内容预览";
-        readerRaw.href = "README.md";
+        readerRaw.href = "project-introduction.md";
         readerBody.innerHTML = "<p>从左侧选择一项服务能力开始预览。</p>";
       };
 
